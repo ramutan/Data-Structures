@@ -1,10 +1,10 @@
-# Educational Webpage: Data Structures Learning Hub
+# 📚Educational Webpage: Data Structures Learning Hub
 
 Welcome to the **Data Structures Learning Hub**! This project is designed as an interactive and educational web platform tailored to guide learners through the essential concepts of data structures.
 
 ---
 
-## Join the Journey in Data Structures
+## 🌐 Join the Journey in Data Structures
 
 Mastering data structures is one of the most rewarding milestones in programming. Whether you are building complex applications, optimizing algorithms, or preparing for technical challenges, understanding how data is organized under the hood is your ultimate superpower. 
 
@@ -12,7 +12,7 @@ We invite you to **join us on this exciting journey** through data structures! E
 
 ---
 
-## Programmer Profile
+## 🧑‍💻 Programmer Profile
 
 * **Developer:** Prince Ram Roydlikent F. Igna
 * **Course Year:** 2nd Year BSIT - GD Student
