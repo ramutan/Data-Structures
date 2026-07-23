@@ -15,6 +15,7 @@ We invite you to **join us on this exciting journey** through data structures! E
 ## Programmer Profile
 
 * **Developer:** Prince Ram Roydlikent F. Igna
+* **Course Year: 2nd Year BSIT - GD Student
 * **Institution:** University of Perpetual Help System DALTA - Molino Campus
 * **Project Name:** Data Structures Educational Webpage
 
