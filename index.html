@@ -1,312 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Structures — Join the Journey</title>
-
-  <link rel="stylesheet" href="data.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Structures Academy — Learn the Building Blocks of Code</title>
+  <meta name="description" content="A guided learning journey through arrays, linked lists, stacks, queues, trees and graphs." />
+  
+  <link rel="stylesheet" href="data.css" />
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="nav-brand">
-      <span class="brand-node"></span>
-      Data<span class="brand-accent">Structures</span>
+  <!-- ==================== AUTH SCREEN ==================== -->
+  <div id="auth-screen" class="auth-screen">
+    <div class="auth-bg">
+      <svg class="auth-graph" viewBox="0 0 400 400" aria-hidden="true">
+        <g stroke="currentColor" stroke-width="1.2" opacity="0.35">
+          <line x1="200" y1="200" x2="80" y2="80" />
+          <line x1="200" y1="200" x2="320" y2="90" />
+          <line x1="200" y1="200" x2="60" y2="300" />
+          <line x1="200" y1="200" x2="340" y2="310" />
+          <line x1="80" y1="80" x2="60" y2="300" />
+          <line x1="320" y1="90" x2="340" y2="310" />
+        </g>
+        <g fill="currentColor">
+          <circle cx="200" cy="200" r="10" />
+          <circle cx="80" cy="80" r="6" opacity="0.7" />
+          <circle cx="320" cy="90" r="6" opacity="0.7" />
+          <circle cx="60" cy="300" r="6" opacity="0.7" />
+          <circle cx="340" cy="310" r="6" opacity="0.7" />
+        </g>
+      </svg>
     </div>
 
-    <nav class="nav-links">
-      <a href="#" class="nav-link active" data-target="home">Home</a>
-      <a href="#" class="nav-link" data-target="about">About Us</a>
-      <a href="#" class="nav-link" data-target="contact">Contact Us</a>
-    </nav>
-
-    <div class="nav-actions">
-      <button class="btn btn-ghost" id="openLogin">Log In</button>
-      <button class="btn btn-primary" id="openSignup">Join the Journey</button>
-    </div>
-
-    <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
-
-  <!-- Page Sections -->
-  <main>
-
-    <!-- Home Section -->
-    <section id="home" class="page-section active">
-      <div class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">01 — Home</p>
-          <h1>Every great program<br>starts with the <span class="text-accent">right node.</span></h1>
-          <p class="hero-sub">
-            Learn arrays, linked lists, stacks, queues, trees and graphs the way engineers actually
-            think about them — as connections between pieces of data. Traverse at your own pace.
-          </p>
-          <div class="hero-cta">
-            <button class="btn btn-primary btn-lg" id="heroSignup">Join the Journey — It's Free</button>
-            <button class="btn btn-outline btn-lg" data-target="about">See what's inside</button>
-          </div>
-          <div class="hero-stats">
-            <div><strong>6</strong><span>core structures</span></div>
-            <div><strong>5</strong><span>core operations</span></div>
-            <div><strong>1</strong><span>community of learners</span></div>
-          </div>
-        </div>
-        <div class="hero-graphic" aria-hidden="true">
-          <svg viewBox="0 0 420 420" id="nodeGraph">
-            <line x1="90" y1="80" x2="210" y2="150" class="edge" />
-            <line x1="210" y1="150" x2="330" y2="90" class="edge" />
-            <line x1="210" y1="150" x2="150" y2="270" class="edge" />
-            <line x1="210" y1="150" x2="300" y2="280" class="edge" />
-            <line x1="150" y1="270" x2="90" y2="350" class="edge" />
-            <line x1="300" y1="280" x2="340" y2="360" class="edge" />
-            <circle cx="90" cy="80" r="12" class="node node-1" />
-            <circle cx="330" cy="90" r="9" class="node node-2" />
-            <circle cx="210" cy="150" r="16" class="node node-root" />
-            <circle cx="150" cy="270" r="11" class="node node-3" />
-            <circle cx="300" cy="280" r="11" class="node node-4" />
-            <circle cx="90" cy="350" r="8" class="node node-5" />
-            <circle cx="340" cy="360" r="8" class="node node-6" />
-          </svg>
-        </div>
+    <header class="auth-top">
+      <div class="brand">
+        <span class="brand-node"></span>
+        <span>Data<span class="brand-accent"> Structures</span> Academy</span>
       </div>
+      <button id="theme-toggle-auth" class="icon-btn" title="Toggle theme">☀</button>
+    </header>
 
-      <section class="content-block">
-        <p class="eyebrow">What are Data Structures?</p>
-        <h2>Storing data is easy. Storing it well is the whole craft.</h2>
-        <p>Data structures are a way of organizing and storing data in a computer so it can be accessed
-          and modified efficiently. They give you a means to manage large amounts of information for
-          databases, operating systems, and everything in between.</p>
-      </section>
-
-      <section class="content-block">
-        <p class="eyebrow">Introduction</p>
-        <h2>The foundation under every algorithm</h2>
-        <p>Data structures are fundamental to computer science and software development. Choosing and
-          implementing the right one is what separates code that runs, from code that scales.</p>
-      </section>
-
-      <section class="content-block">
-        <p class="eyebrow">Common Operations</p>
-        <h2>Five moves you'll use constantly</h2>
-        <ul class="pill-list">
-          <li>Insertion</li>
-          <li>Deletion</li>
-          <li>Traversal</li>
-          <li>Searching</li>
-          <li>Sorting</li>
+    <div class="auth-card">
+      <div class="auth-side">
+        <div class="eyebrow">Enrollment · Required</div>
+        <h1>Create your account to start the journey.</h1>
+        <p>Every lesson, activity, and check tracks your progress. Sign up first, then log in to unlock the course.</p>
+        <ul class="auth-perks">
+          <li>✓ 4 modules · 21 lessons</li>
+          <li>✓ Progress that follows you across sessions</li>
+          <li>✓ Hands-on activities & earnable completion badges</li>
         </ul>
-      </section>
-
-      <section class="content-block">
-        <p class="eyebrow">Terminology</p>
-        <h2>The building blocks</h2>
-        <div class="term-grid">
-          <div class="term-card"><span class="term-index">01</span>Arrays</div>
-          <div class="term-card"><span class="term-index">02</span>Linked Lists</div>
-          <div class="term-card"><span class="term-index">03</span>Stacks</div>
-          <div class="term-card"><span class="term-index">04</span>Queues</div>
-          <div class="term-card"><span class="term-index">05</span>Trees</div>
-          <div class="term-card"><span class="term-index">06</span>Graphs</div>
-        </div>
-      </section>
-
-      <section class="content-block highlight">
-        <p class="eyebrow">Why it matters</p>
-        <h2>The right structure is a performance decision</h2>
-        <p>Choosing the right data structure can greatly affect the performance of an algorithm.
-          Efficient data structures mean faster execution and lower memory usage — the difference
-          between code that struggles and code that scales.</p>
-      </section>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="page-section">
-      <div class="section-header">
-        <p class="eyebrow">02 — About Us</p>
-        <h1>Built by a learner, for learners.</h1>
       </div>
-      <div class="about-grid">
-        <div class="about-card">
-          <h3>Our mission</h3>
-          <p>We're passionate about computer science and building a place where data structures make
-            sense — not through dense theory, but through clear explanations and steady practice.</p>
-        </div>
-        <div class="about-card">
-          <h3>Who's behind it</h3>
-          <p>This site is built and maintained by <strong>Prince Ram</strong>, a programmer tackling
-            data structures one concept at a time — and building the resource he wished existed along
-            the way.</p>
-        </div>
-        <div class="about-card">
-          <h3>How we teach</h3>
-          <p>Every structure is introduced with what it is, why it exists, and where it's used —
-            arrays to graphs, insertion to sorting — so the operations always connect back to a real
-            problem worth solving.</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="page-section">
-      <div class="section-header">
-        <p class="eyebrow">03 — Contact Us</p>
-        <h1>Questions? Traverse over to us.</h1>
-      </div>
-      <div class="contact-wrap">
-        <p>If you have any questions or feedback, feel free to reach out — every message gets read.</p>
-        <form class="contact-form" id="contactForm">
-          <label>
-            Name
-            <input type="text" name="name" placeholder="Your name" required>
+      <div class="auth-form-wrap">
+        <div class="modal-tabs">
+          <button id="tab-signup" class="modal-tab active">1. Sign Up</button>
+          <button id="tab-login" class="modal-tab">2. Log In</button>
+        </div>
+
+        <div id="auth-error" class="form-error" style="display: none;"></div>
+        <div id="auth-success" class="form-success" style="display: none;"></div>
+
+        <!-- Signup Form -->
+        <form id="signup-form">
+          <h2 class="auth-h2">Create Account</h2>
+          <p class="auth-sub">Set up your student profile.</p>
+
+          <label class="field">
+            Username
+            <input type="text" id="signup-username" placeholder="e.g. dev_pioneers" required />
           </label>
-          <label>
+
+          <label class="field">
             Email
-            <input type="email" name="email" placeholder="you@example.com" required>
-          </label>
-          <label>
-            Message
-            <textarea name="message" rows="4" placeholder="What's on your mind?" required></textarea>
-          </label>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-          <p class="form-note" id="contactNote"></p>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="brand-node"></div>
-    <p>Data Structures — an educational project by <strong>Prince Ram</strong>.</p>
-  </footer>
-
-  <!-- Auth Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" role="dialog" aria-modal="true">
-      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-
-      <!-- Breadcrumbs -->
-      <div class="breadcrumbs" id="breadcrumbs">
-        <span class="crumb active" data-step="1">1. Account</span>
-        <span class="crumb-sep">›</span>
-        <span class="crumb" data-step="2">2. Security</span>
-        <span class="crumb-sep">›</span>
-        <span class="crumb" data-step="3">3. Confirm</span>
-      </div>
-
-      <div class="modal-tabs">
-        <button class="modal-tab active" id="tabLogin" data-mode="login">Log In</button>
-        <button class="modal-tab" id="tabSignup" data-mode="signup">Sign Up</button>
-      </div>
-
-      <!-- LOGIN FORM -->
-      <form class="auth-form" id="loginForm">
-        <h2>Welcome back, node.</h2>
-        <p class="modal-sub">Pick up your traversal where you left off.</p>
-
-        <label class="field">
-          <span>Email</span>
-          <input type="email" id="loginEmail" placeholder="you@example.com" required>
-          <span class="field-error" id="loginEmailError"></span>
-        </label>
-
-        <label class="field">
-          <span>Password</span>
-          <div class="password-wrap">
-            <input type="password" id="loginPassword" placeholder="Enter your password" required>
-            <button type="button" class="eye-toggle" data-for="loginPassword" aria-label="Show password">👁</button>
-          </div>
-          <span class="field-error" id="loginPasswordError"></span>
-        </label>
-
-        <button type="submit" class="btn btn-primary btn-block">Confirm &amp; Log In</button>
-        <p class="form-note" id="loginNote"></p>
-      </form>
-
-      <!-- SIGNUP FORM -->
-      <form class="auth-form hidden" id="signupForm">
-
-        <!-- Step 1: Account -->
-        <div class="signup-step" data-step="1">
-          <h2>Start your journey.</h2>
-          <p class="modal-sub">It's all about data structures — let's create your account.</p>
-
-          <label class="field">
-            <span>Username</span>
-            <input type="text" id="signupUsername" placeholder="e.g. prince_ram" required>
+            <input type="email" id="signup-email" placeholder="name@example.com" required />
           </label>
 
           <label class="field">
-            <span>Email</span>
-            <input type="email" id="signupEmail" placeholder="you@example.com" required>
-            <span class="field-error" id="signupEmailError"></span>
-          </label>
-
-          <button type="button" class="btn btn-primary btn-block next-step" data-next="2">Continue</button>
-        </div>
-
-        <!-- Step 2: Security -->
-        <div class="signup-step hidden" data-step="2">
-          <h2>Secure the connection.</h2>
-          <p class="modal-sub">Give your account a strong password.</p>
-
-          <label class="field">
-            <span>Password</span>
+            Password
             <div class="password-wrap">
-              <input type="password" id="signupPassword" placeholder="Create a password" required>
-              <button type="button" class="eye-toggle" data-for="signupPassword" aria-label="Show password">👁</button>
+              <input type="password" id="signup-password" placeholder="At least 8 characters" required />
+              <button type="button" class="eye-toggle" id="toggle-signup-pw">👁</button>
             </div>
           </label>
 
-          <ul class="password-rules" id="passwordRules">
-            <li data-rule="length">At least 8 characters</li>
-            <li data-rule="upper">One uppercase letter</li>
-            <li data-rule="lower">One lowercase letter</li>
-            <li data-rule="number">One number</li>
-            <li data-rule="special">One special character (!@#$%^&amp;*)</li>
+          <ul class="password-rules">
+            <li id="rule-length">At least 8 characters</li>
+            <li id="rule-upper">One uppercase letter</li>
+            <li id="rule-lower">One lowercase letter</li>
+            <li id="rule-number">One number</li>
+            <li id="rule-special">One special character</li>
           </ul>
 
           <label class="field">
-            <span>Confirm Password</span>
+            Confirm Password
             <div class="password-wrap">
-              <input type="password" id="signupConfirmPassword" placeholder="Re-enter your password" required>
-              <button type="button" class="eye-toggle" data-for="signupConfirmPassword" aria-label="Show password">👁</button>
+              <input type="password" id="signup-confirm-password" placeholder="Repeat your password" required />
+              <button type="button" class="eye-toggle" id="toggle-signup-confirm-pw">👁</button>
             </div>
-            <span class="field-error" id="confirmPasswordError"></span>
           </label>
 
-          <div class="step-actions">
-            <button type="button" class="btn btn-outline prev-step" data-prev="1">Back</button>
-            <button type="button" class="btn btn-primary next-step" data-next="3">Continue</button>
-          </div>
-        </div>
+          <button class="btn btn-primary btn-block btn-lg" type="submit">Register &amp; Proceed to Login</button>
+        </form>
 
-        <!-- Step 3: Confirm -->
-        <div class="signup-step hidden" data-step="3">
-          <h2>Confirm &amp; create.</h2>
-          <p class="modal-sub">Double-check your details before you join.</p>
+        <!-- Login Form -->
+        <form id="login-form" style="display: none;">
+          <h2 class="auth-h2">Welcome Back</h2>
+          <p class="auth-sub">Enter your credentials to enter the academy.</p>
+          
+          <label class="field">
+            Email
+            <input type="email" id="login-email" placeholder="name@example.com" required />
+          </label>
 
-          <div class="review-card">
-            <div><span>Username</span><strong id="reviewUsername">—</strong></div>
-            <div><span>Email</span><strong id="reviewEmail">—</strong></div>
-            <div><span>Password</span><strong>••••••••</strong></div>
-          </div>
+          <label class="field">
+            Password
+            <div class="password-wrap">
+              <input type="password" id="login-password" placeholder="Your password" required />
+              <button type="button" class="eye-toggle" id="toggle-login-pw">👁</button>
+            </div>
+          </label>
 
-          <div class="step-actions">
-            <button type="button" class="btn btn-outline prev-step" data-prev="2">Back</button>
-            <button type="submit" class="btn btn-primary">Confirm &amp; Create Account</button>
-          </div>
-          <p class="form-note" id="signupNote"></p>
-        </div>
-      </form>
+          <button class="btn btn-primary btn-block btn-lg" type="submit">Log In to Academy</button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="brand-node"></span>
+          <span>Data<span class="brand-accent">Structures</span> Academy</span>
+        </div>
+        <p class="footer-credit">
+          This is an educational webpage about data structures by <strong>Prince Ram</strong>.
+        </p>
+        <div class="footer-copy">
+          &copy; 2026 DataStructures Academy. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+</body>
+</html>
+
+  <!-- ==================== APP SHELL ==================== -->
+  <div id="app-shell" class="app-shell" style="display: none;">
+    <header class="topbar">
+      <div class="topbar-brand">
+        <div class="brand-mini">
+          <span class="brand-node"></span>
+          <div>
+            <div class="brand-line-1">DataStructures</div>
+            <div class="brand-line-2">Academy</div>
+          </div>
+        </div>
+        
+        <!-- App Navigation Links -->
+        <nav class="topbar-nav">
+          <button class="top-nav-btn active" id="nav-course">Course</button>
+          <button class="top-nav-btn" id="nav-about">About Us</button>
+          <button class="top-nav-btn" id="nav-contact">Contact Us</button>
+        </nav>
+      </div>
+
+      <div class="topbar-right">
+        <div class="mini-progress" id="topbar-progress-wrap">
+          <div class="mini-track">
+            <div class="mini-fill" id="topbar-progress-fill" style="width: 0%;"></div>
+          </div>
+          <span id="topbar-progress-num">0%</span>
+        </div>
+        <button id="theme-toggle-app" class="icon-btn" title="Toggle theme">☀</button>
+
+        <div class="user-menu">
+          <button id="user-menu-btn" class="user-btn">
+            <span class="avatar" id="user-avatar">U</span>
+            <span class="user-name" id="user-display-name">User</span>
+            <span>▾</span>
+          </button>
+          <div id="user-dropdown" class="user-dropdown" style="display: none;">
+            <div class="user-email" id="user-display-email">user@example.com</div>
+            <button id="btn-view-profile">👤 Profile &amp; Badges</button>
+            <button id="btn-logout">🚪 Log out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="app-body">
+      <!-- Sidebar (Visible on Course Page) -->
+      <aside class="sidebar" id="app-sidebar">
+        <div class="sidebar-head">
+          <div class="course-badge">Course</div>
+          <h2 class="course-title">Getting Started with Data Structures</h2>
+          <div class="progress-row">
+            <div class="progress-track">
+              <div class="progress-fill" id="sidebar-progress-fill" style="width: 0%;"></div>
+            </div>
+            <span class="progress-num" id="sidebar-progress-num">0%</span>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab tab-active">📖 Course Outline</button>
+          <button class="tab">📚 Resources</button>
+        </div>
+
+        <div class="search-wrap">
+          <input type="text" id="course-search" class="search-input" placeholder="Search course outline" />
+          <span class="search-icon">⌕</span>
+        </div>
+
+        <nav class="modules" id="modules-container"></nav>
+      </aside>
+
+      <!-- Main Content Pane -->
+      <main class="lesson-pane" id="main-content-pane">
+        
+        <!-- View 1: Course Lesson Content -->
+        <div id="view-course" class="page-view">
+          <div class="lesson-topbar">
+            <div class="crumb-title" id="crumb-lesson-title">Lesson Title</div>
+            <div class="lesson-tools">
+              <button class="icon-btn" id="theme-toggle-main" title="Toggle theme">☀</button>
+            </div>
+          </div>
+
+          <article class="lesson-content">
+            <div class="lesson-kind" id="lesson-kind-badge">📖 Reading</div>
+            <h1 class="lesson-h1" id="lesson-h1">Lesson Title</h1>
+            <p class="lesson-lead">
+              In this lesson, you will explore the concepts behind <em id="module-title-lead">Module Title</em>.
+            </p>
+
+            <div class="lesson-body">
+              <p id="lesson-body-text"></p>
+
+              <div id="video-placeholder" class="video-frame" style="display: none;">
+                <div class="play-button">▶</div>
+                <span id="video-placeholder-id">Video placeholder</span>
+              </div>
+
+              <div id="activity-card" class="activity-card" style="display: none;">
+                <strong>Try it</strong>
+                <p>Complete the activity described above, then mark this lesson complete to move on.</p>
+              </div>
+
+              <div class="note">
+                <strong>Note:</strong> After you open this lesson, your progress is tracked in the outline on the left.
+              </div>
+            </div>
+
+            <div class="lesson-actions">
+              <button id="btn-prev-lesson" class="btn btn-ghost">← Previous</button>
+              <button id="btn-next-lesson" class="btn btn-primary">Mark complete &amp; continue →</button>
+            </div>
+          </article>
+
+          <div class="side-nav-arrows">
+            <button id="arrow-prev" class="arrow-btn" title="Previous lesson">‹</button>
+            <button id="arrow-next" class="arrow-btn arrow-right" title="Next lesson">›</button>
+          </div>
+        </div>
+
+        <!-- View 2: About Us -->
+        <div id="view-about" class="page-view" style="display: none;">
+          <div class="page-container">
+            <span class="eyebrow">About Us</span>
+            <h1 class="page-title">Empowering Engineers Through Structured Learning</h1>
+            <p class="page-lead">DataStructures Academy was built to simplify computer science core concepts through structured modules, interactive checks, and tangible rewards.</p>
+            <div class="info-card">
+              <h3>Our Philosophy</h3>
+              <p>We believe learning data structures should be intuitive and hands-on. By breaking down linear and non-linear concepts into bite-sized lessons with visual progress tracking, learners build long-term retention and confidence for technical interviews.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- View 3: Contact Us -->
+        <div id="view-contact" class="page-view" style="display: none;">
+          <div class="page-container">
+            <span class="eyebrow">Contact Us</span>
+            <h1 class="page-title">Get in Touch</h1>
+            <p class="page-lead">Have questions or feedback about our course modules? Drop us a message below.</p>
+            <form id="contact-form" class="info-card">
+              <label class="field">
+                Name
+                <input type="text" placeholder="Your name" required />
+              </label>
+              <label class="field">
+                Email
+                <input type="email" placeholder="Your email address" required />
+              </label>
+              <label class="field">
+                Message
+                <textarea rows="4" class="text-input" placeholder="How can we help you?" required></textarea>
+              </label>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- View 4: Profile & Badges -->
+        <div id="view-profile" class="page-view" style="display: none;">
+          <div class="page-container">
+            <span class="eyebrow">Learner Profile</span>
+            <h1 class="page-title" id="profile-user-title">User Profile</h1>
+            <p class="page-lead" id="profile-user-email">user@example.com</p>
+
+            <div class="info-card">
+              <h3>Earned Badges &amp; Module Rewards</h3>
+              <p>Complete 100% of the lessons in a module to unlock its exclusive badge!</p>
+              
+              <div id="badges-grid" class="badges-grid">
+                <!-- Badges populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
 </body>
 </html>
