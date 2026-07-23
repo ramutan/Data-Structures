@@ -142,15 +142,18 @@ function initAuthEvents() {
     e.preventDefault();
     hideMessages();
 
-    const email = document.getElementById("login-email").value.trim();
+    const identifier = document.getElementById("login-email").value.trim().toLowerCase();
     const password = document.getElementById("login-password").value;
 
     if (!registeredAccount) {
       return showError("No account found. Please sign up first.");
     }
 
-    if (email !== registeredAccount.email || password !== registeredAccount.password) {
-      return showError("Invalid email or password.");
+    const matchesEmail = registeredAccount.email.toLowerCase() === identifier;
+    const matchesUsername = registeredAccount.username.toLowerCase() === identifier;
+
+    if ((!matchesEmail && !matchesUsername) || password !== registeredAccount.password) {
+      return showError("Invalid username/email or password.");
     }
 
     authenticate(registeredAccount);
