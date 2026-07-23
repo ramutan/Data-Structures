@@ -45,7 +45,7 @@ Instead of treating data as isolated values, data structures group related infor
 
 * `index.html` - Main HTML structure of the educational webpage.
 * `data.css` - Custom styling for the layout and content presentation.
-* `data.script` - JavaScript file that handles the interactive features and logic of the webpage.
+* `data.js` - JavaScript file that handles the interactive features and logic of the webpage.
 * `README.md` - Documentation and overview of the repository.
 
 ---
