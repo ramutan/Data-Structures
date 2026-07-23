@@ -1,4 +1,8 @@
 /* ---------------- Curriculum Data ---------------- */
+// 📌 MODULE DATA STRUCTURE:
+// To customize any lesson:
+// - "videoUrl": Paste an embedded YouTube URL (e.g. "https://www.youtube.com/embed/VIDEO_ID")
+// - "activity": Set a title, task, and hint/solution for the user.
 const MODULES = [
   {
     id: "m1",
@@ -6,11 +10,51 @@ const MODULES = [
     badgeTitle: "Foundations Pioneer",
     badgeIcon: "🧱",
     lessons: [
-      { id: "1.0.1", title: "1.0.1 Welcome to the Journey", kind: "reading", body: "Data structures are how programs remember. Every algorithm you'll ever write depends on picking the right container for the job. In this module, you'll meet the six core structures and the vocabulary engineers use to talk about them." },
-      { id: "1.0.2", title: "1.0.2 What is a Data Structure?", kind: "reading", body: "A data structure is a way of organizing and storing data so it can be accessed and modified efficiently. Think of it as the shape of your memory: an array is a shelf, a linked list is a chain of sticky notes, a tree is a family diagram." },
-      { id: "1.0.3", title: "1.0.3 Video — Why Structures Matter", kind: "video", body: "▶ In this video walkthrough, we compare a naive O(n²) approach with a well-chosen structure that solves the same problem in O(n log n)." },
-      { id: "1.0.4", title: "1.0.4 Activity — Match the Structure", kind: "activity", body: "Match each real-world problem (undo stack, print queue, phonebook, social graph) to the data structure that fits best. Check your answer at the bottom of the lesson." },
-      { id: "1.0.5", title: "1.0.5 Module Check", kind: "activity", body: "A short knowledge check. Get 4/5 to complete this module." }
+      { 
+        id: "1.0.1", 
+        title: "1.0.1 Welcome to the Journey", 
+        kind: "reading", 
+        body: "Data structures are how programs remember. Every algorithm you'll ever write depends on picking the right container for the job. In this module, you'll meet the six core structures and the vocabulary engineers use to talk about them.",
+        videoUrl: "https://youtu.be/zgCnMvvw6Oo?si=pFJQN97_9_NC6kl4",
+      },
+      { 
+        id: "1.0.2", 
+        title: "1.0.2 What is a Data Structure?", 
+        kind: "reading", 
+        body: "A data structure is a way of organizing and storing data so it can be accessed and modified efficiently. Think of it as the shape of your memory: an array is a shelf, a linked list is a chain of sticky notes, a tree is a family diagram.",
+        videoUrl: "",
+        },
+
+      { 
+        id: "1.0.3", 
+        title: "1.0.3 Video — Why Structures Matter", 
+        kind: "video", 
+        body: "In this video walkthrough, we compare a naive O(n²) approach with a well-chosen structure that solves the same problem in O(n log n).",
+        videoUrl: "",
+
+      },
+      { 
+        id: "1.0.4", 
+        title: "1.0.4 Activity — Match the Structure", 
+        kind: "activity", 
+        body: "Match each real-world problem (undo stack, print queue, phonebook, social graph) to the data structure that fits best.",
+        activity: {
+          title: "Matching Challenge",
+          task: "Match the following items: 1. Browser Back Button, 2. Playlist Loop, 3. City Map. Structures: Graph, Stack, Circular List.",
+          hint: "Back button uses LIFO (Last In, First Out)."
+        }
+      },
+      { 
+        id: "1.0.5", 
+        title: "1.0.5 Module Check", 
+        kind: "activity", 
+        body: "A short knowledge check. Review all core concepts covered in this module before continuing.",
+        activity: {
+          title: "Module 1 Review Quiz",
+          task: "Write down 3 advantages of choosing an Array over a Linked List.",
+          hint: "Consider index access speed!"
+        }
+      }
     ]
   },
   {
@@ -19,12 +63,57 @@ const MODULES = [
     badgeTitle: "Linear Master",
     badgeIcon: "⚡",
     lessons: [
-      { id: "1.1.1", title: "1.1.1 Arrays and Indexing", kind: "reading", body: "Arrays store items in contiguous memory. Access is O(1). Insertion in the middle is O(n). Great when you know the size up front." },
-      { id: "1.1.2", title: "1.1.2 Linked Lists", kind: "reading", body: "A linked list trades random access for cheap insertion. Each node points to the next; some point both ways. Traversal is linear." },
-      { id: "1.1.3", title: "1.1.3 Stacks — Last In, First Out", kind: "reading", body: "Stacks power function calls, undo history, and expression parsing. Two operations rule everything: push and pop." },
-      { id: "1.1.4", title: "1.1.4 Queues — First In, First Out", kind: "video", body: "▶ Watch how a queue schedules print jobs, keyboard input, and BFS traversals." },
-      { id: "1.1.5", title: "1.1.5 Activity — Build a Stack", kind: "activity", body: "Implement push, pop, and peek. Try it in the embedded sandbox below." },
-      { id: "1.1.6", title: "1.1.6 Module Check", kind: "activity", body: "A short knowledge check on linear structures." }
+      { 
+        id: "1.1.1", 
+        title: "1.1.1 Arrays and Indexing", 
+        kind: "reading", 
+        body: "Arrays store items in contiguous memory. Access is O(1). Insertion in the middle is O(n). Great when you know the size up front.",
+        videoUrl: "",
+      },
+      { 
+        id: "1.1.2", 
+        title: "1.1.2 Linked Lists", 
+        kind: "reading", 
+        body: "A linked list trades random access for cheap insertion. Each node points to the next; some point both ways. Traversal is linear.",
+        videoUrl: "",
+      },
+      { 
+        id: "1.1.3", 
+        title: "1.1.3 Stacks — Last In, First Out", 
+        kind: "reading", 
+        body: "Stacks power function calls, undo history, and expression parsing. Two operations rule everything: push and pop.",
+        videoUrl: "",
+      },
+      { 
+        id: "1.1.4", 
+        title: "1.1.4 Queues — First In, First Out", 
+        kind: "video", 
+        body: "Watch how a queue schedules print jobs, keyboard input, and BFS traversals.",
+        videoUrl: "",
+
+      },
+      { 
+        id: "1.1.5", 
+        title: "1.1.5 Activity — Build a Stack", 
+        kind: "activity", 
+        body: "Implement push, pop, and peek using JavaScript arrays.",
+        activity: {
+          title: "Coding a Simple Stack",
+          task: "Create a JS array `let stack = []`. Use `.push()` to add 3 numbers and `.pop()` once. What is `stack.length`?",
+          hint: "`.push()` adds to the end, `.pop()` removes from the end!"
+        }
+      },
+      { 
+        id: "1.1.6", 
+        title: "1.1.6 Module Check", 
+        kind: "activity", 
+        body: "A short knowledge check on linear structures.",
+        activity: {
+          title: "Linear Structures Checkpoint",
+          task: "When would you use a Queue instead of a Stack? Provide one clear example.",
+          hint: "Think about tasks that require order of arrival processing."
+        }
+      }
     ]
   },
   {
@@ -33,11 +122,49 @@ const MODULES = [
     badgeTitle: "Graph Explorer",
     badgeIcon: "🌳",
     lessons: [
-      { id: "1.2.1", title: "1.2.1 Trees and Hierarchy", kind: "reading", body: "Trees model hierarchy: file systems, DOMs, org charts. A binary search tree lets you find an item in O(log n) on average." },
-      { id: "1.2.2", title: "1.2.2 Traversals — DFS and BFS", kind: "reading", body: "Depth-first goes deep before wide. Breadth-first sweeps level by level. Same nodes, different order — and different problems solved." },
-      { id: "1.2.3", title: "1.2.3 Graphs — Nodes and Edges", kind: "video", body: "▶ Graphs are the shape of the internet, social networks, and road maps. Learn adjacency lists vs. matrices." },
-      { id: "1.2.4", title: "1.2.4 Activity — Traverse a Graph", kind: "activity", body: "Given a small graph, list the visit order for DFS and BFS starting from node A." },
-      { id: "1.2.5", title: "1.2.5 Module Check", kind: "activity", body: "A short knowledge check on trees and graphs." }
+      { 
+        id: "1.2.1", 
+        title: "1.2.1 Trees and Hierarchy", 
+        kind: "reading", 
+        body: "Trees model hierarchy: file systems, DOMs, org charts. A binary search tree lets you find an item in O(log n) on average.",
+        videoUrl: "",
+      },
+      { 
+        id: "1.2.2", 
+        title: "1.2.2 Traversals — DFS and BFS", 
+        kind: "reading", 
+        body: "Depth-first goes deep before wide. Breadth-first sweeps level by level. Same nodes, different order — and different problems solved.",
+        videoUrl: "",
+      },
+      { 
+        id: "1.2.3", 
+        title: "1.2.3 Graphs — Nodes and Edges", 
+        kind: "video", 
+        body: "Graphs are the shape of the internet, social networks, and road maps. Learn adjacency lists vs. matrices.",
+        videoUrl: "",
+      },
+      { 
+        id: "1.2.4", 
+        title: "1.2.4 Activity — Traverse a Graph", 
+        kind: "activity", 
+        body: "Given a small graph, list the visit order for DFS and BFS starting from node A.",
+        activity: {
+          title: "Graph Traversal Trace",
+          task: "Start at Node A connected to B and C. B connects to D. What is the BFS visit order starting from A?",
+          hint: "BFS visits all direct neighbors first (A, then B & C)!"
+        }
+      },
+      { 
+        id: "1.2.5", 
+        title: "1.2.5 Module Check", 
+        kind: "activity", 
+        body: "A short knowledge check on trees and graphs.",
+        activity: {
+          title: "Trees & Graphs Quiz",
+          task: "What makes a tree different from a general graph?",
+          hint: "A tree is a connected graph with no cycles!"
+        }
+      }
     ]
   },
   {
@@ -46,11 +173,49 @@ const MODULES = [
     badgeTitle: "Operations Specialist",
     badgeIcon: "🏆",
     lessons: [
-      { id: "1.3.1", title: "1.3.1 Insertion and Deletion", kind: "reading", body: "The cost of adding or removing depends entirely on the structure. We'll compare arrays, lists, and trees side by side." },
-      { id: "1.3.2", title: "1.3.2 Searching", kind: "reading", body: "Linear search, binary search, hash lookup. Same goal, wildly different cost." },
-      { id: "1.3.3", title: "1.3.3 Sorting Fundamentals", kind: "video", body: "▶ Bubble, insertion, merge, quick — a tour of the classics and when each one shines." },
-      { id: "1.3.4", title: "1.3.4 Activity — Big-O Sort", kind: "activity", body: "Rank the operations by their worst-case complexity." },
-      { id: "1.3.5", title: "1.3.5 Final Check", kind: "activity", body: "The course wrap-up quiz. 8/10 unlocks your completion badge." }
+      { 
+        id: "1.3.1", 
+        title: "1.3.1 Insertion and Deletion", 
+        kind: "reading", 
+        body: "The cost of adding or removing depends entirely on the structure. We'll compare arrays, lists, and trees side by side.",
+        videoUrl: "",
+      },
+      { 
+        id: "1.3.2", 
+        title: "1.3.2 Searching", 
+        kind: "reading", 
+        body: "Linear search, binary search, hash lookup. Same goal, wildly different cost.",
+        videoUrl: "",
+      },
+      { 
+        id: "1.3.3", 
+        title: "1.3.3 Sorting Fundamentals", 
+        kind: "video", 
+        body: "Bubble, insertion, merge, quick — a tour of the classics and when each one shines.",
+        videoUrl: "",
+      },
+      { 
+        id: "1.3.4", 
+        title: "1.3.4 Activity — Big-O Sort", 
+        kind: "activity", 
+        body: "Rank the operations by their worst-case complexity.",
+        activity: {
+          title: "Complexity Sorting",
+          task: "Order these Big-O complexities from fastest to slowest: O(n²), O(1), O(n), O(log n).",
+          hint: "Constant time is always fastest!"
+        }
+      },
+      { 
+        id: "1.3.5", 
+        title: "1.3.5 Final Check", 
+        kind: "activity", 
+        body: "The course wrap-up quiz. Complete all concepts to claim your final badge.",
+        activity: {
+          title: "Course Final Mastery Check",
+          task: "Pick any 2 data structures learned in this course and summarize when you would use one over the other.",
+          hint: "Think about read speed vs write speed requirements."
+        }
+      }
     ]
   }
 ];
@@ -137,7 +302,7 @@ function initAuthEvents() {
     }, 1200);
   });
 
-  // Log In Submission
+  // Log In Submission (Supports Email OR Username)
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     hideMessages();
@@ -443,6 +608,7 @@ function renderCourseOutline() {
   });
 }
 
+/* ---------------- Dynamic Lesson, Video & Activity Renderer ---------------- */
 function renderActiveLesson() {
   let activeModule = MODULES[0];
   let activeLesson = MODULES[0].lessons[0];
@@ -467,15 +633,46 @@ function renderActiveLesson() {
 
   document.getElementById("lesson-body-text").textContent = activeLesson.body;
 
+  // 1. Render Video Iframe
   const videoFrame = document.getElementById("video-placeholder");
-  const activityCard = document.getElementById("activity-card");
-
-  videoFrame.style.display = activeLesson.kind === "video" ? "flex" : "none";
-  if (activeLesson.kind === "video") {
-    document.getElementById("video-placeholder-id").textContent = `Video placeholder — ${activeLesson.id}`;
+  if (videoFrame) {
+    if (activeLesson.videoUrl) {
+      videoFrame.style.display = "flex";
+      videoFrame.innerHTML = `
+        <iframe 
+          width="100%" 
+          height="360" 
+          src="${activeLesson.videoUrl}" 
+          title="${activeLesson.title}" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+          style="border-radius: 8px; border: 0;">
+        </iframe>
+      `;
+    } else {
+      videoFrame.style.display = "none";
+      videoFrame.innerHTML = "";
+    }
   }
 
-  activityCard.style.display = activeLesson.kind === "activity" ? "block" : "none";
+  // 2. Render Activity Card
+  const activityCard = document.getElementById("activity-card");
+  if (activityCard) {
+    if (activeLesson.activity) {
+      activityCard.style.display = "block";
+      activityCard.innerHTML = `
+        <div style="padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid var(--brand-accent, #3b82f6); margin-top: 15px;">
+          <h3 style="margin: 0 0 8px 0; font-size: 1.1rem; color: var(--text-color, inherit);">🧩 ${activeLesson.activity.title}</h3>
+          <p style="margin: 0 0 10px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
+          ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;">💡 <strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+        </div>
+      `;
+    } else {
+      activityCard.style.display = "none";
+      activityCard.innerHTML = "";
+    }
+  }
 
   const nextBtn = document.getElementById("btn-next-lesson");
   nextBtn.textContent = completedLessons.has(activeLesson.id)
