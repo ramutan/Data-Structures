@@ -1,8 +1,4 @@
 /* ---------------- Curriculum Data ---------------- */
-// 📌 MODULE DATA STRUCTURE:
-// To customize any lesson:
-// - "videoUrl": Paste an embedded YouTube URL (e.g. "https://www.youtube.com/embed/VIDEO_ID")
-// - "activity": Set a title, task, and hint/solution for the user.
 const MODULES = [
   {
     id: "m1",

@@ -1,10 +1,10 @@
-# 📚Educational Webpage: Data Structures Learning Hub
+# Educational Webpage: Data Structures Learning Hub
 
 Welcome to the **Data Structures Learning Hub**! This project is designed as an interactive and educational web platform tailored to guide learners through the essential concepts of data structures.
 
 ---
 
-## 🌐 Join the Journey in Data Structures
+## Join the Journey in Data Structures
 
 Mastering data structures is one of the most rewarding milestones in programming. Whether you are building complex applications, optimizing algorithms, or preparing for technical challenges, understanding how data is organized under the hood is your ultimate superpower. 
 
@@ -12,7 +12,7 @@ We invite you to **join us on this exciting journey** through data structures! E
 
 ---
 
-## 🧑‍💻 Programmer Profile
+##  Programmer Profile
 
 * **Developer:** Prince Ram Roydlikent F. Igna
 * **Course Year:** 2nd Year BSIT - GD Student
@@ -32,7 +32,7 @@ Instead of treating data as isolated values, data structures group related infor
 
 ---
 
-## 💡 Why is it Important to Learn Data Structures?
+##  Why is it Important to Learn Data Structures?
 
 1. **Efficiency and Performance:** Choosing the right data structure allows programs to execute faster and consume less memory.
 2. **Problem Solving:** They provide structured approaches to solving complex software problems cleanly and effectively.
@@ -41,7 +41,7 @@ Instead of treating data as isolated values, data structures group related infor
 
 ---
 
-## 🛠️ Project Structure
+##  Project Structure
 
 * `index.html` - Main HTML structure of the educational webpage.
 * `data.css` - Custom styling for the layout and content presentation.
