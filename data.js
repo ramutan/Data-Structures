@@ -7,26 +7,24 @@ const MODULES = [
     badgeIcon: "🧱",
     lessons: [
       { 
-       id: "1.0.1", 
-      title: "1.0.1 Welcome to the Journey", 
-      kind: "reading", 
-      body: "Welcome to Data Structures Academy! This is an educational platform designed to guide you through the fundamental building blocks of software development.<br><br><img src='pictures/Data Structures slide 1.png' alt='Welcome Slide' style='max-width: 100%; height: auto; border-radius: 8px;'><br><br>A data structure is a specialized way of organizing, storing, and managing data in computer memory so it can be accessed and modified efficiently.<br><br><h3>Core Classifications:</h3><ul><li><b>Linear Data Structures:</b> Data elements are arranged sequentially in a straight line, where each element connects directly to its adjacent neighbors. Examples include Arrays, Stacks, Queues, and Linked Lists.</li><li><b>Non-Linear Data Structures:</b> Data elements are organized hierarchically or networked together rather than in a sequence. Examples include Trees and Graphs.</li></ul><br>Get ready to master these core concepts and level up your software engineering foundation!<br><br>For additional course materials and updates, visit www.DataStructuresAcademy.com."
+        id: "1.0.1",
+        title: "1.0.1 Welcome to the Journey",
+        kind: "reading",
+        body: "Welcome to Data Structures Academy! This is an educational platform designed to guide you through the fundamental building blocks of software development.<br><br><img src='pictures/Data Structures slide 1.png' style='width: 100%; border-radius: 8px; margin: 10px 0;'><br><br>A data structure is a specialized way of organizing, storing, and managing data in computer memory so it can be accessed and modified efficiently.<br><br><b>Core Classifications:</b><ul><li><b>Linear Data Structures:</b> Data elements are arranged sequentially in a straight line, where each element connects directly to its adjacent neighbors. Examples include Arrays, Stacks, Queues, and Linked Lists.</li><li><b>Non-Linear Data Structures:</b> Data elements are organized hierarchically or networked together rather than in a sequence. Examples include Trees and Graphs.</li></ul><br>Get ready to master these core concepts and level up your software engineering foundation!<br><br>For additional course materials and updates, visit <strong>www.DataStructuresAcademy.com</strong>."
       },
       { 
+         
         id: "1.0.2", 
         title: "1.0.2 What is a Data Structure?", 
         kind: "reading", 
-        body: "A data structure is a way of organizing and storing data so it can be accessed and modified efficiently. Think of it as the shape of your memory: an array is a shelf, a linked list is a chain of sticky notes, a tree is a family diagram.",
-        videoUrl: "",
-        },
-
+        body: "A data structure is a method of storing and organizing data. How we choose to arrange data depends on the type of information we have and what we plan to do with it.<br><br><b>A Real-World Analogy: The Family Tree</b><br>To understand this concept without computers, imagine organizing information about your relatives. You would use a family tree structure because it clearly maps out relationships, making it simple to trace family members back several generations. Without the connected links between parents and children, seeing these relationships would be far more difficult.<br><br><b>Why Data Structures Matter?</b><br>Data structures allow us to handle large volumes of information efficiently, powering major applications like massive databases and web search engines. They serve as foundational elements for building fast algorithms by keeping data organized, lowering system complexity, and boosting overall performance.<br><br><b>Two Main Types in Computer Science:</b><ul><li><b>Primitive Data Structures:</b> Built-in, basic types provided directly by programming languages to hold single values (such as integers, floats, characters, and booleans).</li><li><b>Abstract Data Structures:</b> Advanced structures constructed using primitive types to handle complex operations (such as arrays, linked lists, stacks, queues, trees, and graphs).</li></ul>"
+      },
       { 
         id: "1.0.3", 
         title: "1.0.3 Video — Why Structures Matter", 
         kind: "video", 
         body: "In this video walkthrough, we compare a naive O(n²) approach with a well-chosen structure that solves the same problem in O(n log n).",
         videoUrl: "",
-
       },
       { 
         id: "1.0.4", 
@@ -85,7 +83,6 @@ const MODULES = [
         kind: "video", 
         body: "Watch how a queue schedules print jobs, keyboard input, and BFS traversals.",
         videoUrl: "",
-
       },
       { 
         id: "1.1.5", 
@@ -626,7 +623,8 @@ function renderActiveLesson() {
   else if (activeLesson.kind === "activity") kindBadge.textContent = "🧩 Activity";
   else kindBadge.textContent = "📖 Reading";
 
-  document.getElementById("lesson-body-text").textContent = activeLesson.body;
+  // CHANGED: Using .innerHTML instead of .textContent to render HTML formatting & images properly
+  document.getElementById("lesson-body-text").innerHTML = activeLesson.body;
 
   // 1. Render Video Iframe
   const videoFrame = document.getElementById("video-placeholder");
