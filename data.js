@@ -7,11 +7,10 @@ const MODULES = [
     badgeIcon: "🧱",
     lessons: [
       { 
-        id: "1.0.1", 
-        title: "1.0.1 Welcome to the Journey", 
-        kind: "reading", 
-        body: "Data structures are how programs remember. Every algorithm you'll ever write depends on picking the right container for the job. In this module, you'll meet the six core structures and the vocabulary engineers use to talk about them.",
-        videoUrl: "https://youtu.be/zgCnMvvw6Oo?si=pFJQN97_9_NC6kl4",
+       id: "1.0.1", 
+      title: "1.0.1 Welcome to the Journey", 
+      kind: "reading", 
+      body: "Welcome to your journey into the world of Data Structures! Step into the core foundation of software design: Data Structures. At its heart, programming is about two things: data and the operations you perform on it. Data structures are simply how programs store, organize, and manage that data in memory so your code runs fast, clean, and reliably.\n\n### What to Expect on This Journey:\n* **Mastering the Basics:** You'll meet the six core data structures every engineer needs to know.\n* **Thinking in Trade-offs:** You'll discover why there is no single 'perfect' structure—only the right tool for the specific problem.\n* **Speaking the Language:** You'll learn the key terminology and computational thinking patterns used by professional developers.\n\nGet ready to level up your problem-solving mindset—let's build your foundations!",
       },
       { 
         id: "1.0.2", 
