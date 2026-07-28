@@ -173,25 +173,26 @@ const MODULES = [
         id: "1.3.2", 
         title: "1.3.2 Searching", 
         kind: "reading", 
-        body: "Linear search, binary search, hash lookup. Same goal, wildly different cost.",
-        videoUrl: "",
+        body: "Linear search, binary search, hash lookup. Same goal, wildly different cost. Watch this video to see how searching works in different data structures and why the right choice matters.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>Revise Computer Science</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/ZpFqAoO4YPc",
       },
       { 
         id: "1.3.3", 
         title: "1.3.3 Sorting Fundamentals", 
         kind: "video", 
-        body: "Bubble, insertion, merge, quick — a tour of the classics and when each one shines.",
-        videoUrl: "",
+        body: "This video will introduce you to the fundamental concepts of sorting algorithms and their applications.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>ByteQuest</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/5d1pyghLs3M",
       },
       { 
         id: "1.3.4", 
         title: "1.3.4 Activity — Big-O Sort", 
         kind: "activity", 
-        body: "Rank the operations by their worst-case complexity.",
+        body: "Test your knowledge on searching algorithm efficiencies.",
         activity: {
-          title: "Complexity Sorting",
-          task: "Order these Big-O complexities from fastest to slowest: O(n²), O(1), O(n), O(log n).",
-          hint: "Constant time is always fastest!"
+          title: "Binary Search Time Complexity",
+          task: "What is the average time complexity of performing a Binary Search on a sorted array of size n? (e.g., O(1), O(n), O(log n), O(n^2))",
+          hint: "Binary search cuts the remaining search space in half with every comparison.",
+          answer: "O(log n)"
         }
       },
       { 
