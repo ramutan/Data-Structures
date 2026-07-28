@@ -198,13 +198,9 @@ const MODULES = [
       { 
         id: "1.3.5", 
         title: "1.3.5 Final Check", 
-        kind: "activity", 
-        body: "The course wrap-up quiz. Complete all concepts to claim your final badge.",
-        activity: {
-          title: "Course Final Mastery Check",
-          task: "Pick any 2 data structures learned in this course and summarize when you would use one over the other.",
-          hint: "Think about read speed vs write speed requirements."
-        }
+        kind: "video", 
+        body: "Watch this video to review all the concepts covered in this module and claim your final badge. <br><br><small style='opacity: 0.8;'><em>Credits to <strong>Codebagel</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/cQWr9DFE1ww",
       }
     ]
   }
@@ -629,193 +625,196 @@ function renderActiveLesson() {
   document.getElementById("lesson-body-text").innerHTML = activeLesson.body;
 
   // 1. Render Video Iframe
-  const videoFrame = document.getElementById("video-placeholder");
-  if (videoFrame) {
-    if (activeLesson.videoUrl) {
-      videoFrame.style.display = "flex";
-      videoFrame.innerHTML = `
-        <iframe 
-          width="100%" 
-          height="360" 
-          src="${activeLesson.videoUrl}" 
-          title="${activeLesson.title}" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-          style="border-radius: 8px; border: 0; width: 100%;">
-        </iframe>
-      `;
-    } else {
-      videoFrame.style.display = "none";
-      videoFrame.innerHTML = "";
-    }
-  }
+ const videoFrame = document.getElementById("video-placeholder");
+ if (videoFrame) {
+   if (activeLesson.videoUrl) {
+     videoFrame.style.display = "flex";
+     videoFrame.innerHTML = `
+       <iframe 
+         width="100%" 
+         height="360" 
+         src="${activeLesson.videoUrl}" 
+         title="${activeLesson.title}" 
+         frameborder="0" 
+         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+         referrerpolicy="strict-origin-when-cross-origin"
+         allowfullscreen
+         style="border-radius: 8px; border: 0; width: 100%;">
+       </iframe>
+     `;
+   } else {
+     videoFrame.style.display = "none";
+     videoFrame.innerHTML = "";
+   }
+ }
 
-  // 2. Render Activity Card
+ // 2. Render Activity Card
 const activityCard = document.getElementById("activity-card");
 if (activityCard) {
-  if (activeLesson.activity) {
-    activityCard.style.display = "block";
-    
-    // --- CASE 1: Matching activity with drop-down pairs ---
-    if (activeLesson.activity.pairs) {
-      let pairsHtml = activeLesson.activity.pairs.map(p => `
-        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
-          <span style="font-weight: 500;">${p.scenario}</span>
-          <select class="activity-select" data-pair-id="${p.id}" style="padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff);">
-            <option value="">-- Select Structure --</option>
-            ${p.options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
-          </select>
-        </div>
-      `).join("");
+ if (activeLesson.activity) {
+   activityCard.style.display = "block";
+   
+   // --- CASE 1: Matching activity with drop-down pairs ---
+   if (activeLesson.activity.pairs) {
+     let pairsHtml = activeLesson.activity.pairs.map(p => `
+       <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
+         <span style="font-weight: 500;">${p.scenario}</span>
+         <select class="activity-select" data-pair-id="${p.id}" style="padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff);">
+           <option value="">-- Select Structure --</option>
+           ${p.options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
+         </select>
+       </div>
+     `).join("");
 
-      activityCard.innerHTML = `
-        <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
-          <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
-          <p style="margin: 0 0 12px 0;">${activeLesson.activity.task}</p>
-          
-          <form id="matching-activity-form" style="margin-bottom: 12px;">
-            ${pairsHtml}
-            <button type="button" id="btn-check-activity" style="margin-top: 10px; padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Check Answers</button>
-          </form>
+     activityCard.innerHTML = `
+       <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+         <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
+         <p style="margin: 0 0 12px 0;">${activeLesson.activity.task}</p>
+         
+         <form id="matching-activity-form" style="margin-bottom: 12px;">
+           ${pairsHtml}
+           <button type="button" id="btn-check-activity" style="margin-top: 10px; padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Check Answers</button>
+         </form>
 
-          <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
-          ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
-        </div>
-      `;
+         <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
+         ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+       </div>
+     `;
 
-      document.getElementById("btn-check-activity").addEventListener("click", () => {
-        const selects = activityCard.querySelectorAll(".activity-select");
-        const feedback = document.getElementById("activity-feedback");
-        let allCorrect = true;
-        let unanswered = false;
+     document.getElementById("btn-check-activity").addEventListener("click", () => {
+       const selects = activityCard.querySelectorAll(".activity-select");
+       const feedback = document.getElementById("activity-feedback");
+       let allCorrect = true;
+       let unanswered = false;
 
-        selects.forEach(select => {
-          const pairId = select.getAttribute("data-pair-id");
-          const pairData = activeLesson.activity.pairs.find(p => p.id === pairId);
+       selects.forEach(select => {
+         const pairId = select.getAttribute("data-pair-id");
+         const pairData = activeLesson.activity.pairs.find(p => p.id === pairId);
 
-          if (!select.value) {
-            unanswered = true;
-          } else if (select.value !== pairData.correct) {
-            allCorrect = false;
-          }
-        });
+         if (!select.value) {
+           unanswered = true;
+         } else if (select.value !== pairData.correct) {
+           allCorrect = false;
+         }
+       });
 
-        feedback.style.display = "block";
-        if (unanswered) {
-          feedback.style.color = "#f59e0b";
-          feedback.textContent = "Please select an answer for all scenarios.";
-        } else if (allCorrect) {
-          feedback.style.color = "#10b981";
-          feedback.textContent = "Excellent! All matches are correct!";
-          if (typeof markComplete === "function") markComplete(activeLesson.id);
-        } else {
-          feedback.style.color = "#ef4444";
-          feedback.textContent = "Some matches are incorrect. Try again!";
-        }
-      });
+       feedback.style.display = "block";
+       if (unanswered) {
+         feedback.style.color = "#f59e0b";
+         feedback.textContent = "Please select an answer for all scenarios.";
+       } else if (allCorrect) {
+         feedback.style.color = "#10b981";
+         feedback.textContent = "Excellent! All matches are correct!";
+         if (typeof markComplete === "function") markComplete(activeLesson.id);
+       } else {
+         feedback.style.color = "#ef4444";
+         feedback.textContent = "Some matches are incorrect. Try again!";
+       }
+     });
 
-    // --- CASE 2: Text input activities (e.g. Graph Traversal, Stacks) ---
-    } else if (activeLesson.activity.answer !== undefined) {
-      activityCard.innerHTML = `
-        <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
-          <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
-          <p style="margin: 0 0 12px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
-          
-          <div style="margin: 12px 0; display: flex; gap: 8px; align-items: center;">
-            <input type="text" id="activity-user-answer" placeholder="e.g. A, B, C, D" style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff); width: 220px;">
-            <button type="button" id="btn-check-input-activity" style="padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Submit Answer</button>
-          </div>
+   // --- CASE 2: Text input activities (e.g. Graph Traversal, Stacks) ---
+   } else if (activeLesson.activity.answer !== undefined) {
+     activityCard.innerHTML = `
+       <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+         <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
+         <p style="margin: 0 0 12px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
+         
+         <div style="margin: 12px 0; display: flex; gap: 8px; align-items: center;">
+           <input type="text" id="activity-user-answer" placeholder="e.g. A, B, C, D" style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff); width: 220px;">
+           <button type="button" id="btn-check-input-activity" style="padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Submit Answer</button>
+         </div>
 
-          <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
-          ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
-        </div>
-      `;
+         <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
+         ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+       </div>
+     `;
 
-      document.getElementById("btn-check-input-activity").addEventListener("click", () => {
-        const userInput = document.getElementById("activity-user-answer").value.trim();
-        const feedback = document.getElementById("activity-feedback");
+     document.getElementById("btn-check-input-activity").addEventListener("click", () => {
+       const userInput = document.getElementById("activity-user-answer").value.trim();
+       const feedback = document.getElementById("activity-feedback");
 
-        feedback.style.display = "block";
+       feedback.style.display = "block";
 
-        if (!userInput) {
-          feedback.style.color = "#f59e0b";
-          feedback.textContent = "Please enter an answer before submitting.";
-          return;
-        }
+       if (!userInput) {
+         feedback.style.color = "#f59e0b";
+         feedback.textContent = "Please enter an answer before submitting.";
+         return;
+       }
 
-        // Clean user input and target answer (remove commas, spaces, dashes)
-        const cleanUser = userInput.toUpperCase().replace(/[^A-Z0-9]/g, "");
-        const cleanTarget = String(activeLesson.activity.answer).toUpperCase().replace(/[^A-Z0-9]/g, "");
+       // Clean user input and target answer (remove commas, spaces, dashes)
+       const cleanUser = userInput.toUpperCase().replace(/[^A-Z0-9]/g, "");
+       const cleanTarget = String(activeLesson.activity.answer).toUpperCase().replace(/[^A-Z0-9]/g, "");
 
-        if (cleanUser === cleanTarget) {
-          feedback.style.color = "#10b981";
-          feedback.textContent = "Correct! BFS visits level-by-level: A, then B and C, then D.";
-          if (typeof markComplete === "function") markComplete(activeLesson.id);
-        } else {
-          feedback.style.color = "#ef4444";
-          feedback.textContent = "Not quite right. Remember, BFS explores all immediate neighbors first!";
-        }
-      });
+       if (cleanUser === cleanTarget) {
+         feedback.style.color = "#10b981";
+         feedback.textContent = "Correct! BFS visits level-by-level: A, then B and C, then D.";
+         if (typeof markComplete === "function") markComplete(activeLesson.id);
+       } else {
+         feedback.style.color = "#ef4444";
+         feedback.textContent = "Not quite right. Remember, BFS explores all immediate neighbors first!";
+       }
+     });
 
-    // --- CASE 3: Fallback static view ---
-    } else {
-      activityCard.innerHTML = `
-        <div style="padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
-          <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
-          <p style="margin: 0 0 10px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
-          ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
-        </div>
-      `;
-    }
+   // --- CASE 3: Fallback static view ---
+   } else {
+     activityCard.innerHTML = `
+       <div style="padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+         <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
+         <p style="margin: 0 0 10px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
+         ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+       </div>
+     `;
+   }
 
-  } else {
-    activityCard.style.display = "none";
-    activityCard.innerHTML = "";
-  }
+ } else {
+   activityCard.style.display = "none";
+   activityCard.innerHTML = "";
+ }
 }
 
 /* ---------------- Profile & Badges View ---------------- */
 function renderProfileView() {
-  if (!currentAccount) return;
+ if (!currentAccount) return;
 
-  document.getElementById("profile-user-title").textContent = currentAccount.username;
-  document.getElementById("profile-user-email").textContent = currentAccount.email;
+ const userTitle = document.getElementById("profile-user-title");
+ const userEmail = document.getElementById("profile-user-email");
+ if (userTitle) userTitle.textContent = currentAccount.username || "User";
+ if (userEmail) userEmail.textContent = currentAccount.email || "";
 
-  const grid = document.getElementById("badges-grid");
-  grid.innerHTML = "";
+ const grid = document.getElementById("badges-grid");
+ if (!grid) return;
+ grid.innerHTML = "";
 
-  MODULES.forEach((m) => {
-    const doneCount = m.lessons.filter((l) => completedLessons.has(l.id)).length;
-    const isCompleted = doneCount === m.lessons.length;
-    const isClaimed = claimedBadges.has(m.id);
+ MODULES.forEach((m) => {
+   const doneCount = m.lessons.filter((l) => completedLessons.has(l.id)).length;
+   const isCompleted = doneCount === m.lessons.length && m.lessons.length > 0;
+   const isClaimed = claimedBadges.has(m.id);
 
-    const card = document.createElement("div");
-    card.className = `badge-card ${isCompleted ? "unlocked" : ""}`;
+   const card = document.createElement("div");
+   card.className = `badge-card ${isCompleted || isClaimed ? "unlocked" : ""}`;
 
-    let buttonHtml = `<button class="btn btn-outline btn-block btn-claim" disabled>Locked (${doneCount}/${m.lessons.length})</button>`;
-    if (isClaimed) {
-      buttonHtml = `<button class="btn btn-ghost btn-block btn-claim" disabled>✓ Claimed</button>`;
-    } else if (isCompleted) {
-      buttonHtml = `<button class="btn btn-primary btn-block btn-claim" data-module="${m.id}">Claim Badge</button>`;
-    }
+   let buttonHtml = `<button class="btn btn-outline btn-block btn-claim" disabled>Locked (${doneCount}/${m.lessons.length})</button>`;
+   if (isClaimed) {
+     buttonHtml = `<button class="btn btn-ghost btn-block btn-claim" disabled>✓ Badge Earned</button>`;
+   } else if (isCompleted) {
+     buttonHtml = `<button class="btn btn-primary btn-block btn-claim" data-module="${m.id}">Claim Badge</button>`;
+   }
 
-    card.innerHTML = `
-      <div class="badge-icon">${m.badgeIcon}</div>
-      <h4 class="badge-title">${m.badgeTitle}</h4>
-      <p class="badge-desc">${m.title}</p>
-      ${buttonHtml}
-    `;
+   card.innerHTML = `
+     <div class="badge-icon">${m.badgeIcon}</div>
+     <h4 class="badge-title">${m.badgeTitle}</h4>
+     <p class="badge-desc">${m.title}</p>
+     ${buttonHtml}
+   `;
 
-    const claimBtn = card.querySelector("button[data-module]");
-    if (claimBtn) {
-      claimBtn.addEventListener("click", () => {
-        claimedBadges.add(m.id);
-        renderProfileView();
-      });
-    }
+   const claimBtn = card.querySelector("button[data-module]");
+   if (claimBtn) {
+     claimBtn.addEventListener("click", () => {
+       claimedBadges.add(m.id);
+       renderProfileView();
+     });
+   }
 
-    grid.appendChild(card);
-  });
+   grid.appendChild(card);
+ });
 }}
