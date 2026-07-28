@@ -13,13 +13,11 @@ const MODULES = [
         body: "Welcome to Data Structures Academy! This is an educational platform designed to guide you through the fundamental building blocks of software development.<br><br><img src='pictures/Data Structures slide 1.png' style='width: 100%; border-radius: 8px; margin: 10px 0;'><br><br>A data structure is a specialized way of organizing, storing, and managing data in computer memory so it can be accessed and modified efficiently.<br><br><b>Core Classifications:</b><ul><li><b>Linear Data Structures:</b> Data elements are arranged sequentially in a straight line, where each element connects directly to its adjacent neighbors. Examples include Arrays, Stacks, Queues, and Linked Lists.</li><li><b>Non-Linear Data Structures:</b> Data elements are organized hierarchically or networked together rather than in a sequence. Examples include Trees and Graphs.</li></ul><br>Get ready to master these core concepts and level up your software engineering foundation!<br><br>For additional course materials and updates, visit <strong>www.DataStructuresAcademy.com</strong>."
       },
       { 
-         
         id: "1.0.2", 
         title: "1.0.2 What is a Data Structure?", 
         kind: "reading", 
         body: "A data structure is a method of storing and organizing data. How we choose to arrange data depends on the type of information we have and what we plan to do with it.<br><br><b>A Real-World Analogy: The Family Tree</b><br>To understand this concept without computers, imagine organizing information about your relatives. You would use a family tree structure because it clearly maps out relationships, making it simple to trace family members back several generations. Without the connected links between parents and children, seeing these relationships would be far more difficult.<br><br><b>Why Data Structures Matter?</b><br>Data structures allow us to handle large volumes of information efficiently, powering major applications like massive databases and web search engines. They serve as foundational elements for building fast algorithms by keeping data organized, lowering system complexity, and boosting overall performance.<br><br><b>Two Main Types in Computer Science:</b><ul><li><b>Primitive Data Structures:</b> Built-in, basic types provided directly by programming languages to hold single values (such as integers, floats, characters, and booleans).</li><li><b>Abstract Data Structures:</b> Advanced structures constructed using primitive types to handle complex operations (such as arrays, linked lists, stacks, queues, trees, and graphs).</li></ul>"
       },
-
       { 
         id: "1.0.3", 
         title: "1.0.3 Video — Why Data Structures Matter?", 
@@ -41,8 +39,8 @@ const MODULES = [
             { id: "p3", scenario: "3. City Map", options: ["Graph", "Stack", "Circular List"], correct: "Graph" }
           ],
           hint: "Back button uses LIFO (Last In, First Out)."
-      } 
-    },
+        } 
+      },
       { 
         id: "1.0.5", 
         title: "1.0.5 Video - Module Review", 
@@ -50,14 +48,14 @@ const MODULES = [
         body: "Watch this review video to reinforce your understanding of the key concepts covered in Module 1. <br><br><small style='opacity: 0.8;'><em>Credits to <strong>mycodeschool</strong> for the video.</em></small>",
         videoUrl: "https://www.youtube-nocookie.com/embed/92S4zgXN17o",
       },
-  ]
-},
-       {
-      id: "m2",
-      title: "1.1 Linear Structures — Arrays, Lists, Stacks, Queues",
-      badgeTitle: "Linear Master",
-      badgeIcon: "⚡",
-      lessons: [
+    ]
+  },
+  {
+    id: "m2",
+    title: "1.1 Linear Structures — Arrays, Lists, Stacks, Queues",
+    badgeTitle: "Linear Master",
+    badgeIcon: "⚡",
+    lessons: [
       { 
         id: "1.1.1", 
         title: "1.1.1 Arrays and Indexing", 
@@ -107,7 +105,7 @@ const MODULES = [
         kind: "video", 
         body: "A short knowledge check on linear structures in 1 minute. Watch the video to refresh your understanding of arrays, linked lists, stacks, and queues.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>Prof Korupt</strong> for the video.</em></small>",
         videoUrl:"https://www.youtube-nocookie.com/embed/jyw1eLn_YRc",
-        }
+      }
     ]
   },
   {
@@ -206,22 +204,23 @@ const MODULES = [
   }
 ];
 
-  /* ---------------- Application State ---------------- */
-let registeredAccount = null; // Stores created account
-let currentAccount = null;    // Stores logged-in account
+/* ---------------- Application State ---------------- */
+let registeredAccount = null; 
+let currentAccount = { username: "ram", email: "user@example.com" }; // Set default logged-in account
 let currentTheme = "dark";
 let completedLessons = new Set();
 let claimedBadges = new Set();
 let activeLessonId = MODULES[0].lessons[0].id;
 let openModules = new Set([MODULES[0].id]);
 let searchQuery = "";
-let currentView = "course"; // 'course' | 'about' | 'contact' | 'profile'
+let currentView = "course"; 
 
 /* ---------------- DOM Initializations ---------------- */
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initAuthEvents();
   initAppEvents();
+  renderProfileView(); // Ensure profile initializes on load
 });
 
 /* ---------------- Theme Handlers ---------------- */
@@ -251,64 +250,63 @@ function initAuthEvents() {
   const loginForm = document.getElementById("login-form");
   const signupForm = document.getElementById("signup-form");
 
-  // Tab Switcher
-  tabLogin.addEventListener("click", () => showAuthTab("login"));
-  tabSignup.addEventListener("click", () => showAuthTab("signup"));
+  if (tabLogin) tabLogin.addEventListener("click", () => showAuthTab("login"));
+  if (tabSignup) tabSignup.addEventListener("click", () => showAuthTab("signup"));
 
-  // Password Visibility Toggles
   setupPasswordToggle("toggle-signup-pw", "signup-password");
   setupPasswordToggle("toggle-signup-confirm-pw", "signup-confirm-password");
   setupPasswordToggle("toggle-login-pw", "login-password");
 
-  // Password Live Validator
-  document.getElementById("signup-password").addEventListener("input", validatePasswordRules);
+  const signupPwEl = document.getElementById("signup-password");
+  if (signupPwEl) signupPwEl.addEventListener("input", validatePasswordRules);
 
-  // Sign Up Submission
-  signupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    hideMessages();
+  if (signupForm) {
+    signupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      hideMessages();
 
-    const username = document.getElementById("signup-username").value.trim();
-    const email = document.getElementById("signup-email").value.trim();
-    const password = document.getElementById("signup-password").value;
-    const confirm = document.getElementById("signup-confirm-password").value;
+      const username = document.getElementById("signup-username").value.trim();
+      const email = document.getElementById("signup-email").value.trim();
+      const password = document.getElementById("signup-password").value;
+      const confirm = document.getElementById("signup-confirm-password").value;
 
-    if (!username) return showError("Choose a username.");
-    if (!validateEmail(email)) return showError("Enter a valid email address.");
-    if (!validatePasswordRules()) return showError("Password does not meet all security requirements.");
-    if (password !== confirm) return showError("Passwords do not match.");
+      if (!username) return showError("Choose a username.");
+      if (!validateEmail(email)) return showError("Enter a valid email address.");
+      if (!validatePasswordRules()) return showError("Password does not meet all security requirements.");
+      if (password !== confirm) return showError("Passwords do not match.");
 
-    // Store account and force switch to login tab
-    registeredAccount = { username, email, password };
-    showSuccess("Account created successfully! Please log in with your credentials.");
-    
-    setTimeout(() => {
-      document.getElementById("login-email").value = email;
-      showAuthTab("login");
-    }, 1200);
-  });
+      registeredAccount = { username, email, password };
+      showSuccess("Account created successfully! Please log in with your credentials.");
+      
+      setTimeout(() => {
+        document.getElementById("login-email").value = email;
+        showAuthTab("login");
+      }, 1200);
+    });
+  }
 
-  // Log In Submission (Supports Email OR Username)
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    hideMessages();
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      hideMessages();
 
-    const identifier = document.getElementById("login-email").value.trim().toLowerCase();
-    const password = document.getElementById("login-password").value;
+      const identifier = document.getElementById("login-email").value.trim().toLowerCase();
+      const password = document.getElementById("login-password").value;
 
-    if (!registeredAccount) {
-      return showError("No account found. Please sign up first.");
-    }
+      if (!registeredAccount) {
+        return showError("No account found. Please sign up first.");
+      }
 
-    const matchesEmail = registeredAccount.email.toLowerCase() === identifier;
-    const matchesUsername = registeredAccount.username.toLowerCase() === identifier;
+      const matchesEmail = registeredAccount.email.toLowerCase() === identifier;
+      const matchesUsername = registeredAccount.username.toLowerCase() === identifier;
 
-    if ((!matchesEmail && !matchesUsername) || password !== registeredAccount.password) {
-      return showError("Invalid username/email or password.");
-    }
+      if ((!matchesEmail && !matchesUsername) || password !== registeredAccount.password) {
+        return showError("Invalid username/email or password.");
+      }
 
-    authenticate(registeredAccount);
-  });
+      authenticate(registeredAccount);
+    });
+  }
 }
 
 function showAuthTab(tab) {
@@ -319,15 +317,15 @@ function showAuthTab(tab) {
   const signupForm = document.getElementById("signup-form");
 
   if (tab === "login") {
-    tabLogin.classList.add("active");
-    tabSignup.classList.remove("active");
-    loginForm.style.display = "block";
-    signupForm.style.display = "none";
+    if (tabLogin) tabLogin.classList.add("active");
+    if (tabSignup) tabSignup.classList.remove("active");
+    if (loginForm) loginForm.style.display = "block";
+    if (signupForm) signupForm.style.display = "none";
   } else {
-    tabSignup.classList.add("active");
-    tabLogin.classList.remove("active");
-    signupForm.style.display = "block";
-    loginForm.style.display = "none";
+    if (tabSignup) tabSignup.classList.add("active");
+    if (tabLogin) tabLogin.classList.remove("active");
+    if (signupForm) signupForm.style.display = "block";
+    if (loginForm) loginForm.style.display = "none";
   }
 }
 
@@ -348,7 +346,9 @@ function validateEmail(email) {
 }
 
 function validatePasswordRules() {
-  const pw = document.getElementById("signup-password").value;
+  const pwEl = document.getElementById("signup-password");
+  if (!pwEl) return false;
+  const pw = pwEl.value;
   const rules = {
     length: pw.length >= 8,
     upper: /[A-Z]/.test(pw),
@@ -357,41 +357,53 @@ function validatePasswordRules() {
     special: /[!@#$%^&*(),.?":{}|<>_\-]/.test(pw)
   };
 
-  document.getElementById("rule-length").className = rules.length ? "met" : "";
-  document.getElementById("rule-upper").className = rules.upper ? "met" : "";
-  document.getElementById("rule-lower").className = rules.lower ? "met" : "";
-  document.getElementById("rule-number").className = rules.number ? "met" : "";
-  document.getElementById("rule-special").className = rules.special ? "met" : "";
+  if (document.getElementById("rule-length")) document.getElementById("rule-length").className = rules.length ? "met" : "";
+  if (document.getElementById("rule-upper")) document.getElementById("rule-upper").className = rules.upper ? "met" : "";
+  if (document.getElementById("rule-lower")) document.getElementById("rule-lower").className = rules.lower ? "met" : "";
+  if (document.getElementById("rule-number")) document.getElementById("rule-number").className = rules.number ? "met" : "";
+  if (document.getElementById("rule-special")) document.getElementById("rule-special").className = rules.special ? "met" : "";
 
   return Object.values(rules).every(Boolean);
 }
 
 function showError(msg) {
   const err = document.getElementById("auth-error");
-  err.textContent = msg;
-  err.style.display = "block";
+  if (err) {
+    err.textContent = msg;
+    err.style.display = "block";
+  }
 }
 
 function showSuccess(msg) {
   const succ = document.getElementById("auth-success");
-  succ.textContent = msg;
-  succ.style.display = "block";
+  if (succ) {
+    succ.textContent = msg;
+    succ.style.display = "block";
+  }
 }
 
 function hideMessages() {
-  document.getElementById("auth-error").style.display = "none";
-  document.getElementById("auth-success").style.display = "none";
+  const err = document.getElementById("auth-error");
+  const succ = document.getElementById("auth-success");
+  if (err) err.style.display = "none";
+  if (succ) succ.style.display = "none";
 }
 
 function authenticate(account) {
   currentAccount = account;
-  document.getElementById("auth-screen").style.display = "none";
-  document.getElementById("app-shell").style.display = "flex";
+  const authScreen = document.getElementById("auth-screen");
+  const appShell = document.getElementById("app-shell");
 
-  // Set header info
-  document.getElementById("user-avatar").textContent = account.username.charAt(0).toUpperCase();
-  document.getElementById("user-display-name").textContent = account.username;
-  document.getElementById("user-display-email").textContent = account.email;
+  if (authScreen) authScreen.style.display = "none";
+  if (appShell) appShell.style.display = "flex";
+
+  const userAvatar = document.getElementById("user-avatar");
+  const userDisplayName = document.getElementById("user-display-name");
+  const userDisplayEmail = document.getElementById("user-display-email");
+
+  if (userAvatar) userAvatar.textContent = account.username.charAt(0).toUpperCase();
+  if (userDisplayName) userDisplayName.textContent = account.username;
+  if (userDisplayEmail) userDisplayEmail.textContent = account.email;
 
   switchView("course");
   renderCourseOutline();
@@ -400,83 +412,110 @@ function authenticate(account) {
 
 /* ---------------- Application Events & Navigation ---------------- */
 function initAppEvents() {
-  // Topbar Page Switchers
-  document.getElementById("nav-course").addEventListener("click", () => switchView("course"));
-  document.getElementById("nav-about").addEventListener("click", () => switchView("about"));
-  document.getElementById("nav-contact").addEventListener("click", () => switchView("contact"));
+  const navCourse = document.getElementById("nav-course");
+  const navAbout = document.getElementById("nav-about");
+  const navContact = document.getElementById("nav-contact");
 
-  // Dropdown Toggle
+  if (navCourse) navCourse.addEventListener("click", () => switchView("course"));
+  if (navAbout) navAbout.addEventListener("click", () => switchView("about"));
+  if (navContact) navContact.addEventListener("click", () => switchView("contact"));
+
   const userBtn = document.getElementById("user-menu-btn");
   const dropdown = document.getElementById("user-dropdown");
-  userBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
-  });
+  if (userBtn && dropdown) {
+    userBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+    });
 
-  document.addEventListener("click", () => {
-    dropdown.style.display = "none";
-  });
+    document.addEventListener("click", () => {
+      dropdown.style.display = "none";
+    });
+  }
 
-  // User Dropdown Options
+  const btnViewProfile = document.getElementById("btn-view-profile");
+  const btnCourse = document.getElementById("btn-course");
+  const btnAbout = document.getElementById("btn-about");
+  const btnContact = document.getElementById("btn-contact");
+  const btnLogout = document.getElementById("btn-logout");
 
-  document.getElementById("btn-view-profile").addEventListener("click", () => switchView("profile"));
-  document.getElementById("btn-course").addEventListener("click", () => switchView("course"));
-  document.getElementById("btn-about").addEventListener("click", () => switchView("about"));
-  document.getElementById("btn-contact").addEventListener("click", () => switchView("contact"));
-  document.getElementById("btn-logout").addEventListener("click", () => {
-    currentAccount = null;
-    document.getElementById("app-shell").style.display = "none";
-    document.getElementById("auth-screen").style.display = "flex";
-    showAuthTab("signup");
-  });
+  if (btnViewProfile) btnViewProfile.addEventListener("click", () => switchView("profile"));
+  if (btnCourse) btnCourse.addEventListener("click", () => switchView("course"));
+  if (btnAbout) btnAbout.addEventListener("click", () => switchView("about"));
+  if (btnContact) btnContact.addEventListener("click", () => switchView("contact"));
+  if (btnLogout) {
+    btnLogout.addEventListener("click", () => {
+      currentAccount = null;
+      document.getElementById("app-shell").style.display = "none";
+      document.getElementById("auth-screen").style.display = "flex";
+      showAuthTab("signup");
+    });
+  }
 
-  // Contact Form Submission Handler
-  document.getElementById("contact-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Thank you for reaching out! Your message has been sent.");
-    e.target.reset();
-  });
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thank you for reaching out! Your message has been sent.");
+      e.target.reset();
+    });
+  }
 
-  // Search Handler
-  document.getElementById("course-search").addEventListener("input", (e) => {
-    searchQuery = e.target.value.toLowerCase();
-    renderCourseOutline();
-  });
+  const courseSearch = document.getElementById("course-search");
+  if (courseSearch) {
+    courseSearch.addEventListener("input", (e) => {
+      searchQuery = e.target.value.toLowerCase();
+      renderCourseOutline();
+    });
+  }
 
-  // Navigation Arrow Listeners
-  document.getElementById("btn-prev-lesson").addEventListener("click", goPrevLesson);
-  document.getElementById("arrow-prev").addEventListener("click", goPrevLesson);
+  const btnPrev = document.getElementById("btn-prev-lesson");
+  const arrowPrev = document.getElementById("arrow-prev");
+  if (btnPrev) btnPrev.addEventListener("click", goPrevLesson);
+  if (arrowPrev) arrowPrev.addEventListener("click", goPrevLesson);
 
-  document.getElementById("btn-next-lesson").addEventListener("click", () => {
-    markComplete(activeLessonId);
-    goNextLesson();
-  });
-  document.getElementById("arrow-next").addEventListener("click", goNextLesson);
+  const btnNext = document.getElementById("btn-next-lesson");
+  const arrowNext = document.getElementById("arrow-next");
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      markComplete(activeLessonId);
+      goNextLesson();
+    });
+  }
+  if (arrowNext) arrowNext.addEventListener("click", goNextLesson);
 }
 
 function switchView(viewName) {
   currentView = viewName;
 
-  // Toggle navigation tab highlights
-  document.getElementById("nav-course").classList.toggle("active", viewName === "course");
-  document.getElementById("nav-about").classList.toggle("active", viewName === "about");
-  document.getElementById("nav-contact").classList.toggle("active", viewName === "contact");
+  const navCourse = document.getElementById("nav-course");
+  const navAbout = document.getElementById("nav-about");
+  const navContact = document.getElementById("nav-contact");
 
-  // Toggle Views
-  document.getElementById("view-course").style.display = viewName === "course" ? "block" : "none";
-  document.getElementById("view-about").style.display = viewName === "about" ? "block" : "none";
-  document.getElementById("view-contact").style.display = viewName === "contact" ? "block" : "none";
-  document.getElementById("view-profile").style.display = viewName === "profile" ? "block" : "none";
+  if (navCourse) navCourse.classList.toggle("active", viewName === "course");
+  if (navAbout) navAbout.classList.toggle("active", viewName === "about");
+  if (navContact) navContact.classList.toggle("active", viewName === "contact");
 
-  // Sidebar display
+  const viewCourse = document.getElementById("view-course");
+  const viewAbout = document.getElementById("view-about");
+  const viewContact = document.getElementById("view-contact");
+  const viewProfile = document.getElementById("view-profile");
+
+  if (viewCourse) viewCourse.style.display = viewName === "course" ? "block" : "none";
+  if (viewAbout) viewAbout.style.display = viewName === "about" ? "block" : "none";
+  if (viewContact) viewContact.style.display = viewName === "contact" ? "block" : "none";
+  if (viewProfile) viewProfile.style.display = viewName === "profile" ? "block" : "none";
+
   const sidebar = document.getElementById("app-sidebar");
   const body = document.querySelector(".app-body");
-  if (viewName === "course") {
-    sidebar.style.display = "block";
-    body.classList.remove("no-sidebar");
-  } else {
-    sidebar.style.display = "none";
-    body.classList.add("no-sidebar");
+  if (sidebar && body) {
+    if (viewName === "course") {
+      sidebar.style.display = "block";
+      body.classList.remove("no-sidebar");
+    } else {
+      sidebar.style.display = "none";
+      body.classList.add("no-sidebar");
+    }
   }
 
   if (viewName === "profile") {
@@ -523,14 +562,20 @@ function updateProgressUI() {
   const total = MODULES.reduce((s, m) => s + m.lessons.length, 0);
   const pct = Math.round((completedLessons.size / total) * 100);
 
-  document.getElementById("topbar-progress-fill").style.width = `${pct}%`;
-  document.getElementById("topbar-progress-num").textContent = `${pct}%`;
-  document.getElementById("sidebar-progress-fill").style.width = `${pct}%`;
-  document.getElementById("sidebar-progress-num").textContent = `${pct}%`;
+  const topFill = document.getElementById("topbar-progress-fill");
+  const topNum = document.getElementById("topbar-progress-num");
+  const sideFill = document.getElementById("sidebar-progress-fill");
+  const sideNum = document.getElementById("sidebar-progress-num");
+
+  if (topFill) topFill.style.width = `${pct}%`;
+  if (topNum) topNum.textContent = `${pct}%`;
+  if (sideFill) sideFill.style.width = `${pct}%`;
+  if (sideNum) sideNum.textContent = `${pct}%`;
 }
 
 function renderCourseOutline() {
   const container = document.getElementById("modules-container");
+  if (!container) return;
   container.innerHTML = "";
 
   MODULES.forEach((m) => {
@@ -612,209 +657,220 @@ function renderActiveLesson() {
     }
   }
 
-  document.getElementById("crumb-lesson-title").textContent = activeLesson.title;
-  document.getElementById("lesson-h1").textContent = activeLesson.title;
-  document.getElementById("module-title-lead").textContent = activeModule.title.replace(/^\d+\.\d+ /, "");
-
+  const crumb = document.getElementById("crumb-lesson-title");
+  const h1 = document.getElementById("lesson-h1");
+  const lead = document.getElementById("module-title-lead");
   const kindBadge = document.getElementById("lesson-kind-badge");
-  if (activeLesson.kind === "video") kindBadge.textContent = "▶ Video";
-  else if (activeLesson.kind === "activity") kindBadge.textContent = "🧩 Activity";
-  else kindBadge.textContent = "📖 Reading";
+  const bodyText = document.getElementById("lesson-body-text");
 
-  // CHANGED: Using .innerHTML instead of .textContent to render HTML formatting & images properly
-  document.getElementById("lesson-body-text").innerHTML = activeLesson.body;
+  if (crumb) crumb.textContent = activeLesson.title;
+  if (h1) h1.textContent = activeLesson.title;
+  if (lead) lead.textContent = activeModule.title.replace(/^\d+\.\d+ /, "");
+
+  if (kindBadge) {
+    if (activeLesson.kind === "video") kindBadge.textContent = "▶ Video";
+    else if (activeLesson.kind === "activity") kindBadge.textContent = "🧩 Activity";
+    else kindBadge.textContent = "📖 Reading";
+  }
+
+  if (bodyText) bodyText.innerHTML = activeLesson.body;
 
   // 1. Render Video Iframe
- const videoFrame = document.getElementById("video-placeholder");
- if (videoFrame) {
-   if (activeLesson.videoUrl) {
-     videoFrame.style.display = "flex";
-     videoFrame.innerHTML = `
-       <iframe 
-         width="100%" 
-         height="360" 
-         src="${activeLesson.videoUrl}" 
-         title="${activeLesson.title}" 
-         frameborder="0" 
-         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-         referrerpolicy="strict-origin-when-cross-origin"
-         allowfullscreen
-         style="border-radius: 8px; border: 0; width: 100%;">
-       </iframe>
-     `;
-   } else {
-     videoFrame.style.display = "none";
-     videoFrame.innerHTML = "";
-   }
- }
+  const videoFrame = document.getElementById("video-placeholder");
+  if (videoFrame) {
+    if (activeLesson.videoUrl) {
+      videoFrame.style.display = "flex";
+      videoFrame.innerHTML = `
+        <iframe 
+          width="100%" 
+          height="360" 
+          src="${activeLesson.videoUrl}" 
+          title="${activeLesson.title}" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          style="border-radius: 8px; border: 0; width: 100%;">
+        </iframe>
+      `;
+    } else {
+      videoFrame.style.display = "none";
+      videoFrame.innerHTML = "";
+    }
+  }
 
- // 2. Render Activity Card
-const activityCard = document.getElementById("activity-card");
-if (activityCard) {
- if (activeLesson.activity) {
-   activityCard.style.display = "block";
-   
-   // --- CASE 1: Matching activity with drop-down pairs ---
-   if (activeLesson.activity.pairs) {
-     let pairsHtml = activeLesson.activity.pairs.map(p => `
-       <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
-         <span style="font-weight: 500;">${p.scenario}</span>
-         <select class="activity-select" data-pair-id="${p.id}" style="padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff);">
-           <option value="">-- Select Structure --</option>
-           ${p.options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
-         </select>
-       </div>
-     `).join("");
+  // 2. Render Activity Card
+  const activityCard = document.getElementById("activity-card");
+  if (activityCard) {
+    if (activeLesson.activity) {
+      activityCard.style.display = "block";
+      
+      // --- CASE 1: Matching activity with drop-down pairs ---
+      if (activeLesson.activity.pairs) {
+        let pairsHtml = activeLesson.activity.pairs.map(p => `
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
+            <span style="font-weight: 500;">${p.scenario}</span>
+            <select class="activity-select" data-pair-id="${p.id}" style="padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff);">
+              <option value="">-- Select Structure --</option>
+              ${p.options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
+            </select>
+          </div>
+        `).join("");
 
-     activityCard.innerHTML = `
-       <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
-         <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
-         <p style="margin: 0 0 12px 0;">${activeLesson.activity.task}</p>
-         
-         <form id="matching-activity-form" style="margin-bottom: 12px;">
-           ${pairsHtml}
-           <button type="button" id="btn-check-activity" style="margin-top: 10px; padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Check Answers</button>
-         </form>
+        activityCard.innerHTML = `
+          <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+            <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
+            <p style="margin: 0 0 12px 0;">${activeLesson.activity.task}</p>
+            
+            <form id="matching-activity-form" style="margin-bottom: 12px;">
+              ${pairsHtml}
+              <button type="button" id="btn-check-activity" style="margin-top: 10px; padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Check Answers</button>
+            </form>
 
-         <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
-         ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
-       </div>
-     `;
+            <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
+            ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+          </div>
+        `;
 
-     document.getElementById("btn-check-activity").addEventListener("click", () => {
-       const selects = activityCard.querySelectorAll(".activity-select");
-       const feedback = document.getElementById("activity-feedback");
-       let allCorrect = true;
-       let unanswered = false;
+        document.getElementById("btn-check-activity").addEventListener("click", () => {
+          const selects = activityCard.querySelectorAll(".activity-select");
+          const feedback = document.getElementById("activity-feedback");
+          let allCorrect = true;
+          let unanswered = false;
 
-       selects.forEach(select => {
-         const pairId = select.getAttribute("data-pair-id");
-         const pairData = activeLesson.activity.pairs.find(p => p.id === pairId);
+          selects.forEach(select => {
+            const pairId = select.getAttribute("data-pair-id");
+            const pairData = activeLesson.activity.pairs.find(p => p.id === pairId);
 
-         if (!select.value) {
-           unanswered = true;
-         } else if (select.value !== pairData.correct) {
-           allCorrect = false;
-         }
-       });
+            if (!select.value) {
+              unanswered = true;
+            } else if (select.value !== pairData.correct) {
+              allCorrect = false;
+            }
+          });
 
-       feedback.style.display = "block";
-       if (unanswered) {
-         feedback.style.color = "#f59e0b";
-         feedback.textContent = "Please select an answer for all scenarios.";
-       } else if (allCorrect) {
-         feedback.style.color = "#10b981";
-         feedback.textContent = "Excellent! All matches are correct!";
-         if (typeof markComplete === "function") markComplete(activeLesson.id);
-       } else {
-         feedback.style.color = "#ef4444";
-         feedback.textContent = "Some matches are incorrect. Try again!";
-       }
-     });
+          feedback.style.display = "block";
+          if (unanswered) {
+            feedback.style.color = "#f59e0b";
+            feedback.textContent = "Please select an answer for all scenarios.";
+          } else if (allCorrect) {
+            feedback.style.color = "#10b981";
+            feedback.textContent = "Excellent! All matches are correct!";
+            if (typeof markComplete === "function") markComplete(activeLesson.id);
+          } else {
+            feedback.style.color = "#ef4444";
+            feedback.textContent = "Some matches are incorrect. Try again!";
+          }
+        });
 
-   // --- CASE 2: Text input activities (e.g. Graph Traversal, Stacks) ---
-   } else if (activeLesson.activity.answer !== undefined) {
-     activityCard.innerHTML = `
-       <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
-         <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
-         <p style="margin: 0 0 12px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
-         
-         <div style="margin: 12px 0; display: flex; gap: 8px; align-items: center;">
-           <input type="text" id="activity-user-answer" placeholder="e.g. A, B, C, D" style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff); width: 220px;">
-           <button type="button" id="btn-check-input-activity" style="padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Submit Answer</button>
-         </div>
+      // --- CASE 2: Text input activities ---
+      } else if (activeLesson.activity.answer !== undefined) {
+        activityCard.innerHTML = `
+          <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+            <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
+            <p style="margin: 0 0 12px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
+            
+            <div style="margin: 12px 0; display: flex; gap: 8px; align-items: center;">
+              <input type="text" id="activity-user-answer" placeholder="e.g. A, B, C, D" style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff); width: 220px;">
+              <button type="button" id="btn-check-input-activity" style="padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Submit Answer</button>
+            </div>
 
-         <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
-         ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
-       </div>
-     `;
+            <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
+            ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+          </div>
+        `;
 
-     document.getElementById("btn-check-input-activity").addEventListener("click", () => {
-       const userInput = document.getElementById("activity-user-answer").value.trim();
-       const feedback = document.getElementById("activity-feedback");
+        document.getElementById("btn-check-input-activity").addEventListener("click", () => {
+          const userInput = document.getElementById("activity-user-answer").value.trim();
+          const feedback = document.getElementById("activity-feedback");
 
-       feedback.style.display = "block";
+          feedback.style.display = "block";
 
-       if (!userInput) {
-         feedback.style.color = "#f59e0b";
-         feedback.textContent = "Please enter an answer before submitting.";
-         return;
-       }
+          if (!userInput) {
+            feedback.style.color = "#f59e0b";
+            feedback.textContent = "Please enter an answer before submitting.";
+            return;
+          }
 
-       // Clean user input and target answer (remove commas, spaces, dashes)
-       const cleanUser = userInput.toUpperCase().replace(/[^A-Z0-9]/g, "");
-       const cleanTarget = String(activeLesson.activity.answer).toUpperCase().replace(/[^A-Z0-9]/g, "");
+          const cleanUser = userInput.toUpperCase().replace(/[^A-Z0-9]/g, "");
+          const cleanTarget = String(activeLesson.activity.answer).toUpperCase().replace(/[^A-Z0-9]/g, "");
 
-       if (cleanUser === cleanTarget) {
-         feedback.style.color = "#10b981";
-         feedback.textContent = "Correct! BFS visits level-by-level: A, then B and C, then D.";
-         if (typeof markComplete === "function") markComplete(activeLesson.id);
-       } else {
-         feedback.style.color = "#ef4444";
-         feedback.textContent = "Not quite right. Remember, BFS explores all immediate neighbors first!";
-       }
-     });
+          if (cleanUser === cleanTarget) {
+            feedback.style.color = "#10b981";
+            feedback.textContent = "Correct! BFS visits level-by-level: A, then B and C, then D.";
+            if (typeof markComplete === "function") markComplete(activeLesson.id);
+          } else {
+            feedback.style.color = "#ef4444";
+            feedback.textContent = "Not quite right. Remember, BFS explores all immediate neighbors first!";
+          }
+        });
 
-   // --- CASE 3: Fallback static view ---
-   } else {
-     activityCard.innerHTML = `
-       <div style="padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
-         <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
-         <p style="margin: 0 0 10px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
-         ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
-       </div>
-     `;
-   }
+      // --- CASE 3: Fallback static view ---
+      } else {
+        activityCard.innerHTML = `
+          <div style="padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+            <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
+            <p style="margin: 0 0 10px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
+            ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+          </div>
+        `;
+      }
 
- } else {
-   activityCard.style.display = "none";
-   activityCard.innerHTML = "";
- }
+    } else {
+      activityCard.style.display = "none";
+      activityCard.innerHTML = "";
+    }
+  }
 }
 
 /* ---------------- Profile & Badges View ---------------- */
 function renderProfileView() {
- if (!currentAccount) return;
+  const userTitle = document.getElementById("profile-user-title") || document.querySelector("h1, h2");
+  const userEmail = document.getElementById("profile-user-email") || document.querySelector("p.user-email");
 
- const userTitle = document.getElementById("profile-user-title");
- const userEmail = document.getElementById("profile-user-email");
- if (userTitle) userTitle.textContent = currentAccount.username || "User";
- if (userEmail) userEmail.textContent = currentAccount.email || "";
+  const name = currentAccount?.username || "ram";
+  const email = currentAccount?.email || "user@example.com";
 
- const grid = document.getElementById("badges-grid");
- if (!grid) return;
- grid.innerHTML = "";
+  if (userTitle) userTitle.textContent = `${name} `;
+  if (userEmail) userEmail.textContent = email;
 
- MODULES.forEach((m) => {
-   const doneCount = m.lessons.filter((l) => completedLessons.has(l.id)).length;
-   const isCompleted = doneCount === m.lessons.length && m.lessons.length > 0;
-   const isClaimed = claimedBadges.has(m.id);
+  const grid = document.getElementById("badges-grid") 
+    || document.querySelector(".badges-grid, .rewards-container, .earned-badges-container")
+    || document.querySelector("div[class*='badge']");
 
-   const card = document.createElement("div");
-   card.className = `badge-card ${isCompleted || isClaimed ? "unlocked" : ""}`;
+  if (!grid) return;
+  grid.innerHTML = "";
 
-   let buttonHtml = `<button class="btn btn-outline btn-block btn-claim" disabled>Locked (${doneCount}/${m.lessons.length})</button>`;
-   if (isClaimed) {
-     buttonHtml = `<button class="btn btn-ghost btn-block btn-claim" disabled>✓ Badge Earned</button>`;
-   } else if (isCompleted) {
-     buttonHtml = `<button class="btn btn-primary btn-block btn-claim" data-module="${m.id}">Claim Badge</button>`;
-   }
+  MODULES.forEach((m) => {
+    const doneCount = m.lessons.filter((l) => completedLessons.has(l.id)).length;
+    const isCompleted = doneCount === m.lessons.length && m.lessons.length > 0;
+    const isClaimed = claimedBadges.has(m.id);
 
-   card.innerHTML = `
-     <div class="badge-icon">${m.badgeIcon}</div>
-     <h4 class="badge-title">${m.badgeTitle}</h4>
-     <p class="badge-desc">${m.title}</p>
-     ${buttonHtml}
-   `;
+    const card = document.createElement("div");
+    card.className = `badge-card ${isCompleted || isClaimed ? "unlocked" : ""}`;
 
-   const claimBtn = card.querySelector("button[data-module]");
-   if (claimBtn) {
-     claimBtn.addEventListener("click", () => {
-       claimedBadges.add(m.id);
-       renderProfileView();
-     });
-   }
+    let buttonHtml = `<button class="btn btn-outline btn-block btn-claim" disabled>Locked (${doneCount}/${m.lessons.length})</button>`;
+    if (isClaimed) {
+      buttonHtml = `<button class="btn btn-ghost btn-block btn-claim" disabled>✓ Badge Earned</button>`;
+    } else if (isCompleted) {
+      buttonHtml = `<button class="btn btn-primary btn-block btn-claim" data-module="${m.id}">Claim Badge</button>`;
+    }
 
-   grid.appendChild(card);
- });
-}}
+    card.innerHTML = `
+      <div class="badge-icon">${m.badgeIcon}</div>
+      <h4 class="badge-title">${m.badgeTitle}</h4>
+      <p class="badge-desc">${m.title}</p>
+      ${buttonHtml}
+    `;
+
+    const claimBtn = card.querySelector("button[data-module]");
+    if (claimBtn) {
+      claimBtn.addEventListener("click", () => {
+        claimedBadges.add(m.id);
+        renderProfileView();
+      });
+    }
+
+    grid.appendChild(card);
+  });
+}
