@@ -22,10 +22,10 @@ const MODULES = [
 
       { 
         id: "1.0.3", 
-        title: "1.0.3 Video — Why Structures Matter?", 
-        kind: "video", 
-        body: "In this video walkthrough, we compare a naive O(n²) approach with a well-chosen structure that solves the same problem in O(n log n).",
-        videoUrl: "",
+        title: "1.0.3 Video — Why Data Structures Matter?", 
+        kind: "video/reel", 
+        body: "In this video walkthrough, you’ll see why data structures actually matter. Think of them as the storage containers of programming. The right container makes your code faster, cleaner, and more efficient. Watch how different structures handle the same data in different ways.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>Reducible</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/VAt2mR7gY0k",
       },
       { 
         id: "1.0.4", 
@@ -34,29 +34,30 @@ const MODULES = [
         body: "Match each real-world problem (undo stack, print queue, phonebook, social graph) to the data structure that fits best.",
         activity: {
           title: "Matching Challenge",
-          task: "Match the following items: 1. Browser Back Button, 2. Playlist Loop, 3. City Map. Structures: Graph, Stack, Circular List.",
+          task: "Match each real-world scenario to its appropriate data structure:",
+          pairs: [
+            { id: "p1", scenario: "1. Browser Back Button", options: ["Graph", "Stack", "Circular List"], correct: "Stack" },
+            { id: "p2", scenario: "2. Playlist Loop", options: ["Graph", "Stack", "Circular List"], correct: "Circular List" },
+            { id: "p3", scenario: "3. City Map", options: ["Graph", "Stack", "Circular List"], correct: "Graph" }
+          ],
           hint: "Back button uses LIFO (Last In, First Out)."
-        }
-      },
+      } 
+    },
       { 
         id: "1.0.5", 
-        title: "1.0.5 Module Check", 
-        kind: "activity", 
-        body: "A short knowledge check. Review all core concepts covered in this module before continuing.",
-        activity: {
-          title: "Module 1 Review Quiz",
-          task: "Write down 3 advantages of choosing an Array over a Linked List.",
-          hint: "Consider index access speed!"
-        }
-      }
-    ]
-  },
-  {
-    id: "m2",
-    title: "1.1 Linear Structures — Arrays, Lists, Stacks, Queues",
-    badgeTitle: "Linear Master",
-    badgeIcon: "⚡",
-    lessons: [
+        title: "1.0.5 Video - Module Review", 
+        kind: "video", 
+        body: "Watch this review video to reinforce your understanding of the key concepts covered in Module 1. <br><br><small style='opacity: 0.8;'><em>Credits to <strong>mycodeschool</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/92S4zgXN17o",
+      },
+  ]
+},
+       {
+      id: "m2",
+      title: "1.1 Linear Structures — Arrays, Lists, Stacks, Queues",
+      badgeTitle: "Linear Master",
+      badgeIcon: "⚡",
+      lessons: [
       { 
         id: "1.1.1", 
         title: "1.1.1 Arrays and Indexing", 
@@ -213,7 +214,7 @@ const MODULES = [
   }
 ];
 
-/* ---------------- Application State ---------------- */
+  /* ---------------- Application State ---------------- */
 let registeredAccount = null; // Stores created account
 let currentAccount = null;    // Stores logged-in account
 let currentTheme = "dark";
@@ -425,7 +426,7 @@ function initAppEvents() {
   });
 
   // User Dropdown Options
-  
+
   document.getElementById("btn-view-profile").addEventListener("click", () => switchView("profile"));
   document.getElementById("btn-course").addEventListener("click", () => switchView("course"));
   document.getElementById("btn-about").addEventListener("click", () => switchView("about"));
@@ -643,9 +644,10 @@ function renderActiveLesson() {
           src="${activeLesson.videoUrl}" 
           title="${activeLesson.title}" 
           frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
-          style="border-radius: 8px; border: 0;">
+          style="border-radius: 8px; border: 0; width: 100%;">
         </iframe>
       `;
     } else {
@@ -659,24 +661,81 @@ function renderActiveLesson() {
   if (activityCard) {
     if (activeLesson.activity) {
       activityCard.style.display = "block";
-      activityCard.innerHTML = `
-        <div style="padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid var(--brand-accent, #3b82f6); margin-top: 15px;">
-          <h3 style="margin: 0 0 8px 0; font-size: 1.1rem; color: var(--text-color, inherit);">🧩 ${activeLesson.activity.title}</h3>
-          <p style="margin: 0 0 10px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
-          ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;">💡 <strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
-        </div>
-      `;
+      
+      // If it's a matching activity with pairs
+      if (activeLesson.activity.pairs) {
+        let pairsHtml = activeLesson.activity.pairs.map(p => `
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
+            <span style="font-weight: 500;">${p.scenario}</span>
+            <select class="activity-select" data-pair-id="${p.id}" style="padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff);">
+              <option value="">-- Select Structure --</option>
+              ${p.options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
+            </select>
+          </div>
+        `).join("");
+
+        activityCard.innerHTML = `
+          <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+            <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;"> ${activeLesson.activity.title}</h3>
+            <p style="margin: 0 0 12px 0;">${activeLesson.activity.task}</p>
+            
+            <form id="matching-activity-form" style="margin-bottom: 12px;">
+              ${pairsHtml}
+              <button type="button" id="btn-check-activity" style="margin-top: 10px; padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Check Answers</button>
+            </form>
+
+            <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
+            ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"> <strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+          </div>
+        `;
+
+        // Add validation logic
+        document.getElementById("btn-check-activity").addEventListener("click", () => {
+          const selects = activityCard.querySelectorAll(".activity-select");
+          const feedback = document.getElementById("activity-feedback");
+          let allCorrect = true;
+          let unanswered = false;
+
+          selects.forEach(select => {
+            const pairId = select.getAttribute("data-pair-id");
+            const pairData = activeLesson.activity.pairs.find(p => p.id === pairId);
+
+            if (!select.value) {
+              unanswered = true;
+            } else if (select.value !== pairData.correct) {
+              allCorrect = false;
+            }
+          });
+
+          feedback.style.display = "block";
+          if (unanswered) {
+            feedback.style.color = "#f59e0b";
+            feedback.textContent = " Please select an answer for all scenarios.";
+          } else if (allCorrect) {
+            feedback.style.color = "#10b981";
+            feedback.textContent = " Excellent! All matches are correct!";
+            markComplete(activeLesson.id);
+          } else {
+            feedback.style.color = "#ef4444";
+            feedback.textContent = " Some matches are incorrect. Try again!";
+          }
+        });
+
+      } else {
+        // Default static view for basic tasks
+        activityCard.innerHTML = `
+          <div style="padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+            <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;"> ${activeLesson.activity.title}</h3>
+            <p style="margin: 0 0 10px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
+            ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+          </div>
+        `;
+      }
     } else {
       activityCard.style.display = "none";
       activityCard.innerHTML = "";
     }
   }
-
-  const nextBtn = document.getElementById("btn-next-lesson");
-  nextBtn.textContent = completedLessons.has(activeLesson.id)
-    ? "Next lesson →"
-    : "Mark complete & continue →";
-}
 
 /* ---------------- Profile & Badges View ---------------- */
 function renderProfileView() {
@@ -720,4 +779,4 @@ function renderProfileView() {
 
     grid.appendChild(card);
   });
-}
+}}
