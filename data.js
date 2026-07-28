@@ -23,7 +23,7 @@ const MODULES = [
       { 
         id: "1.0.3", 
         title: "1.0.3 Video — Why Data Structures Matter?", 
-        kind: "video/reel", 
+        kind: "video", 
         body: "In this video walkthrough, you’ll see why data structures actually matter. Think of them as the storage containers of programming. The right container makes your code faster, cleaner, and more efficient. Watch how different structures handle the same data in different ways.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>Reducible</strong> for the video.</em></small>",
         videoUrl: "https://www.youtube-nocookie.com/embed/VAt2mR7gY0k",
       },
@@ -62,29 +62,28 @@ const MODULES = [
         id: "1.1.1", 
         title: "1.1.1 Arrays and Indexing", 
         kind: "reading", 
-        body: "Arrays store items in contiguous memory. Access is O(1). Insertion in the middle is O(n). Great when you know the size up front.",
-        videoUrl: "",
+        body: "An array is a linear data structure that stores multiple items of the same type in sequential, back-to-back memory blocks. Because elements sit next to each other, accessing any element directly using its index takes constant time <b>O(1)</b>.<br><br><b>How Array Indexing Works Under the Hood:</b><br>When an array is allocated in memory, the system uses a simple mathematical formula to instantly calculate the exact memory location of any element at runtime:<br><br><div style='background: rgba(255, 255, 255, 0.05); padding: 12px; border-radius: 6px; font-family: monospace; text-align: center; margin: 10px 0;'>element_address = base_address + (index * element_size)</div><br><b>Key Formula Breakdown:</b><ul><li><b>Base Address:</b> The starting memory location of the array (where index 0 sits).</li><li><b>Element Index:</b> The numerical position of the element starting from 0. It represents how many items come before it.</li><li><b>Size of Element:</b> The fixed memory footprint required by the data type (e.g., <code>int</code> = 4 bytes, <code>char</code> = 1 byte, <code>long</code> = 8 bytes).</li></ul><br><b>Performance Trade-offs:</b><ul><li><b>Access:</b> Instant direct lookup using indices — <b>O(1)</b>.</li><li><b>Insertion/Deletion:</b> Inserting or removing items in the middle requires shifting surrounding elements — <b>O(n)</b>.</li><li><b>Best Used For:</b> Scenarios where the dataset size is fixed or known in advance.</li></ul>",
       },
       { 
         id: "1.1.2", 
         title: "1.1.2 Linked Lists", 
-        kind: "reading", 
-        body: "A linked list trades random access for cheap insertion. Each node points to the next; some point both ways. Traversal is linear.",
-        videoUrl: "",
+        kind: "video", 
+        body: "Watch this video to learn about linked lists and their implementation. Linked lists are a linear data structure where each element (node) contains a reference (pointer) to the next node in the sequence. This allows for efficient insertions and deletions, especially in dynamic memory scenarios.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>Neso Academy</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/R9PTBwOzceo",
       },
       { 
         id: "1.1.3", 
         title: "1.1.3 Stacks — Last In, First Out", 
-        kind: "reading", 
-        body: "Stacks power function calls, undo history, and expression parsing. Two operations rule everything: push and pop.",
-        videoUrl: "",
+        kind: "video", 
+        body: "Stacks power function calls, undo history, and expression parsing. Two operations rule everything: push and pop. Watch how a stack handles these operations in real time.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>mycodeschool</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/F1F2imiOJfk",
       },
       { 
         id: "1.1.4", 
         title: "1.1.4 Queues — First In, First Out", 
         kind: "video", 
-        body: "Watch how a queue schedules print jobs, keyboard input, and BFS traversals.",
-        videoUrl: "",
+        body: "This video introduces the Queue data structure as an Abstract Data Type (ADT), explaining FIFO operations (enqueue, dequeue, front) and real-world scenarios like shared printer tasks and CPU scheduling. See how a queue handles these operations in real time.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>mycodeschool</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/XuCbpw6Bj1U",
       },
       { 
         id: "1.1.5", 
@@ -93,21 +92,22 @@ const MODULES = [
         body: "Implement push, pop, and peek using JavaScript arrays.",
         activity: {
           title: "Coding a Simple Stack",
-          task: "Create a JS array `let stack = []`. Use `.push()` to add 3 numbers and `.pop()` once. What is `stack.length`?",
-          hint: "`.push()` adds to the end, `.pop()` removes from the end!"
+          task: "Analyze the code execution below and select the correct array length for each step:",
+          hint: ".push() adds an element to the end, while .pop() removes the last element!!",
+          pairs: [
+            { id: "s1", scenario: "1. Start with an empty stack and push 5.", options: ["Length = 0", "Length = 1", "Length = 2"], correct: "Length = 1" },
+            { id: "s2", scenario: "2. Push 10 onto the stack.", options: ["Length = 1", "Length = 2", "Length = 3"], correct: "Length = 2" },
+            { id: "s3", scenario: "3. Pop the top element.", options: ["Length = 1", "Length = 2", "Length = 3"], correct: "Length = 1" }
+          ]
         }
       },
       { 
         id: "1.1.6", 
         title: "1.1.6 Module Check", 
-        kind: "activity", 
-        body: "A short knowledge check on linear structures.",
-        activity: {
-          title: "Linear Structures Checkpoint",
-          task: "When would you use a Queue instead of a Stack? Provide one clear example.",
-          hint: "Think about tasks that require order of arrival processing."
+        kind: "video", 
+        body: "A short knowledge check on linear structures in 1 minute. Watch the video to refresh your understanding of arrays, linked lists, stacks, and queues.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>Prof Korupt</strong> for the video.</em></small>",
+        videoUrl:"https://www.youtube-nocookie.com/embed/jyw1eLn_YRc",
         }
-      }
     ]
   },
   {
@@ -119,23 +119,22 @@ const MODULES = [
       { 
         id: "1.2.1", 
         title: "1.2.1 Trees and Hierarchy", 
-        kind: "reading", 
-        body: "Trees model hierarchy: file systems, DOMs, org charts. A binary search tree lets you find an item in O(log n) on average.",
-        videoUrl: "",
+        kind: "video", 
+        body: "Trees model hierarchy: file systems, DOMs, org charts. A binary search tree lets you find an item in O(log n) on average. Watch this video to see how trees work and how they can be traversed.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>mycodeschool</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/qH6yxkw0u78",
       },
       { 
         id: "1.2.2", 
         title: "1.2.2 Traversals — DFS and BFS", 
-        kind: "reading", 
-        body: "Depth-first goes deep before wide. Breadth-first sweeps level by level. Same nodes, different order — and different problems solved.",
-        videoUrl: "",
+        kind: "video", 
+        body: "Depth-first goes deep before wide. Breadth-first sweeps level by level. Same nodes, different order — and different problems solved. Watch this video to see how DFS and BFS work in real time.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>AlgoMonster</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/cS-198wtfj0",
       },
       { 
         id: "1.2.3", 
         title: "1.2.3 Graphs — Nodes and Edges", 
-        kind: "video", 
-        body: "Graphs are the shape of the internet, social networks, and road maps. Learn adjacency lists vs. matrices.",
-        videoUrl: "",
+        kind: "reading", 
+        body: "A graph is a non-linear data structure composed of <b>vertices</b> (nodes) and <b>edges</b> (connections) that model how different entities relate to one another. Unlike linear structures like arrays or linked lists, elements in a graph do not follow a strict sequential order.<br><br><b>Real-World Example:</b><br>Think of a navigation map: each city acts as a vertex, and every highway connecting two cities serves as an edge. This maps out how locations interconnect.<br><br><div style='text-align: center; margin: 15px 0;'><img src='pictures/introtographs.jpg' alt='Introduction to Graphs Diagram' style='max-width: 100%; height: auto; border-radius: 6px;'><br><span style='font-size: 0.85em; opacity: 0.8;'>Image source/credit: W3Schools</span></div><br><b>Core Components of a Graph:</b><ul><li><b>Vertices (Nodes):</b> The fundamental individual data units within the graph. Vertices can either be labeled or unlabeled.</li><li><b>Edges (Arcs):</b> The links used to connect pairs of nodes. In directed graphs, edges represent an ordered pair. Connections can link any two nodes flexibly, and edges may also be labeled or unlabeled.</li></ul>"
       },
       { 
         id: "1.2.4", 
@@ -145,19 +144,16 @@ const MODULES = [
         activity: {
           title: "Graph Traversal Trace",
           task: "Start at Node A connected to B and C. B connects to D. What is the BFS visit order starting from A?",
-          hint: "BFS visits all direct neighbors first (A, then B & C)!"
+          hint: "BFS visits all direct neighbors first (A, then B & C)!",
+          answer: "A, B, C, D"
         }
       },
       { 
         id: "1.2.5", 
         title: "1.2.5 Module Check", 
-        kind: "activity", 
-        body: "A short knowledge check on trees and graphs.",
-        activity: {
-          title: "Trees & Graphs Quiz",
-          task: "What makes a tree different from a general graph?",
-          hint: "A tree is a connected graph with no cycles!"
-        }
+        kind: "video", 
+        body: "A short knowledge check on trees and graphs. This video will help you review the key concepts of non-linear structures, including trees, graphs, and their traversal methods.<br><br><small style='opacity: 0.8;'><em>Credits to <strong>WilliamFiset</strong> for the video.</em></small>",
+        videoUrl: "https://www.youtube-nocookie.com/embed/1XC3p2zBK34",
       }
     ]
   },
@@ -171,8 +167,7 @@ const MODULES = [
         id: "1.3.1", 
         title: "1.3.1 Insertion and Deletion", 
         kind: "reading", 
-        body: "The cost of adding or removing depends entirely on the structure. We'll compare arrays, lists, and trees side by side.",
-        videoUrl: "",
+        body: "<b>Insertion</b> and <b>deletion</b> represent two foundational operations for modifying data structures: inserting new values and removing existing ones.<br><br>The mechanics and efficiency of these operations vary significantly depending on the underlying structure:<br><br><b>1. Arrays</b><ul><li><b>Insertion:</b> Inserting at the start or middle requires shifting subsequent elements to open up space (<b>O(n)</b> worst case). Inserting at the end takes <b>O(1)</b> if capacity permits.</li><li><b>Deletion:</b> Removing any item except the last requires shifting elements left to close the gap (<b>O(n)</b> worst case).</li></ul><b>2. Linked Lists</b><ul><li><b>Insertion & Deletion:</b> If you hold a direct pointer to the target node, modifying pointers takes <b>O(1)</b> time. However, searching to locate that specific position takes <b>O(n)</b>.</li></ul><b>3. Stacks & Queues</b><ul><li><b>Stacks:</b> Pushing to or popping from the top takes <b>O(1)</b> time.</li><li><b>Queues:</b> Enqueuing at the back and dequeuing from the front operate in <b>O(1)</b> time using a linked list or circular array.</li></ul><b>4. Binary Search Trees (BST)</b><ul><li><b>Insertion:</b> Traverses down to locate the appropriate spot (Average: <b>O(log n)</b>, Worst case for unbalanced trees: <b>O(n)</b>).</li><li><b>Deletion:</b> Requires handling three distinct scenarios: removing a leaf, a single-child node, or a two-child node (using an in-order successor/predecessor) (Average: <b>O(log n)</b>, Worst case: <b>O(n)</b>).</li></ul><b>5. Hash Tables</b><ul><li><b>Insertion & Deletion:</b> Uses a hash function to map keys directly to buckets for average <b>O(1)</b> operations (Worst case drops to <b>O(n)</b> under heavy collisions).</li></ul>",
       },
       { 
         id: "1.3.2", 
@@ -657,85 +652,128 @@ function renderActiveLesson() {
   }
 
   // 2. Render Activity Card
-  const activityCard = document.getElementById("activity-card");
-  if (activityCard) {
-    if (activeLesson.activity) {
-      activityCard.style.display = "block";
-      
-      // If it's a matching activity with pairs
-      if (activeLesson.activity.pairs) {
-        let pairsHtml = activeLesson.activity.pairs.map(p => `
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
-            <span style="font-weight: 500;">${p.scenario}</span>
-            <select class="activity-select" data-pair-id="${p.id}" style="padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff);">
-              <option value="">-- Select Structure --</option>
-              ${p.options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
-            </select>
-          </div>
-        `).join("");
+const activityCard = document.getElementById("activity-card");
+if (activityCard) {
+  if (activeLesson.activity) {
+    activityCard.style.display = "block";
+    
+    // --- CASE 1: Matching activity with drop-down pairs ---
+    if (activeLesson.activity.pairs) {
+      let pairsHtml = activeLesson.activity.pairs.map(p => `
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.2); padding: 8px 12px; border-radius: 6px;">
+          <span style="font-weight: 500;">${p.scenario}</span>
+          <select class="activity-select" data-pair-id="${p.id}" style="padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff);">
+            <option value="">-- Select Structure --</option>
+            ${p.options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
+          </select>
+        </div>
+      `).join("");
 
-        activityCard.innerHTML = `
-          <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
-            <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;"> ${activeLesson.activity.title}</h3>
-            <p style="margin: 0 0 12px 0;">${activeLesson.activity.task}</p>
-            
-            <form id="matching-activity-form" style="margin-bottom: 12px;">
-              ${pairsHtml}
-              <button type="button" id="btn-check-activity" style="margin-top: 10px; padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Check Answers</button>
-            </form>
+      activityCard.innerHTML = `
+        <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+          <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
+          <p style="margin: 0 0 12px 0;">${activeLesson.activity.task}</p>
+          
+          <form id="matching-activity-form" style="margin-bottom: 12px;">
+            ${pairsHtml}
+            <button type="button" id="btn-check-activity" style="margin-top: 10px; padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Check Answers</button>
+          </form>
 
-            <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
-            ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"> <strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
-          </div>
-        `;
+          <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
+          ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+        </div>
+      `;
 
-        // Add validation logic
-        document.getElementById("btn-check-activity").addEventListener("click", () => {
-          const selects = activityCard.querySelectorAll(".activity-select");
-          const feedback = document.getElementById("activity-feedback");
-          let allCorrect = true;
-          let unanswered = false;
+      document.getElementById("btn-check-activity").addEventListener("click", () => {
+        const selects = activityCard.querySelectorAll(".activity-select");
+        const feedback = document.getElementById("activity-feedback");
+        let allCorrect = true;
+        let unanswered = false;
 
-          selects.forEach(select => {
-            const pairId = select.getAttribute("data-pair-id");
-            const pairData = activeLesson.activity.pairs.find(p => p.id === pairId);
+        selects.forEach(select => {
+          const pairId = select.getAttribute("data-pair-id");
+          const pairData = activeLesson.activity.pairs.find(p => p.id === pairId);
 
-            if (!select.value) {
-              unanswered = true;
-            } else if (select.value !== pairData.correct) {
-              allCorrect = false;
-            }
-          });
-
-          feedback.style.display = "block";
-          if (unanswered) {
-            feedback.style.color = "#f59e0b";
-            feedback.textContent = " Please select an answer for all scenarios.";
-          } else if (allCorrect) {
-            feedback.style.color = "#10b981";
-            feedback.textContent = " Excellent! All matches are correct!";
-            markComplete(activeLesson.id);
-          } else {
-            feedback.style.color = "#ef4444";
-            feedback.textContent = " Some matches are incorrect. Try again!";
+          if (!select.value) {
+            unanswered = true;
+          } else if (select.value !== pairData.correct) {
+            allCorrect = false;
           }
         });
 
-      } else {
-        // Default static view for basic tasks
-        activityCard.innerHTML = `
-          <div style="padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
-            <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;"> ${activeLesson.activity.title}</h3>
-            <p style="margin: 0 0 10px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
-            ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+        feedback.style.display = "block";
+        if (unanswered) {
+          feedback.style.color = "#f59e0b";
+          feedback.textContent = "Please select an answer for all scenarios.";
+        } else if (allCorrect) {
+          feedback.style.color = "#10b981";
+          feedback.textContent = "Excellent! All matches are correct!";
+          if (typeof markComplete === "function") markComplete(activeLesson.id);
+        } else {
+          feedback.style.color = "#ef4444";
+          feedback.textContent = "Some matches are incorrect. Try again!";
+        }
+      });
+
+    // --- CASE 2: Text input activities (e.g. Graph Traversal, Stacks) ---
+    } else if (activeLesson.activity.answer !== undefined) {
+      activityCard.innerHTML = `
+        <div style="padding: 18px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+          <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
+          <p style="margin: 0 0 12px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
+          
+          <div style="margin: 12px 0; display: flex; gap: 8px; align-items: center;">
+            <input type="text" id="activity-user-answer" placeholder="e.g. A, B, C, D" style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color, #444); background: var(--bg-color, #222); color: var(--text-color, #fff); width: 220px;">
+            <button type="button" id="btn-check-input-activity" style="padding: 8px 16px; border-radius: 6px; border: none; background: #3b82f6; color: white; cursor: pointer; font-weight: bold;">Submit Answer</button>
           </div>
-        `;
-      }
+
+          <div id="activity-feedback" style="display: none; font-weight: bold; margin-bottom: 8px;"></div>
+          ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+        </div>
+      `;
+
+      document.getElementById("btn-check-input-activity").addEventListener("click", () => {
+        const userInput = document.getElementById("activity-user-answer").value.trim();
+        const feedback = document.getElementById("activity-feedback");
+
+        feedback.style.display = "block";
+
+        if (!userInput) {
+          feedback.style.color = "#f59e0b";
+          feedback.textContent = "Please enter an answer before submitting.";
+          return;
+        }
+
+        // Clean user input and target answer (remove commas, spaces, dashes)
+        const cleanUser = userInput.toUpperCase().replace(/[^A-Z0-9]/g, "");
+        const cleanTarget = String(activeLesson.activity.answer).toUpperCase().replace(/[^A-Z0-9]/g, "");
+
+        if (cleanUser === cleanTarget) {
+          feedback.style.color = "#10b981";
+          feedback.textContent = "Correct! BFS visits level-by-level: A, then B and C, then D.";
+          if (typeof markComplete === "function") markComplete(activeLesson.id);
+        } else {
+          feedback.style.color = "#ef4444";
+          feedback.textContent = "Not quite right. Remember, BFS explores all immediate neighbors first!";
+        }
+      });
+
+    // --- CASE 3: Fallback static view ---
     } else {
-      activityCard.style.display = "none";
-      activityCard.innerHTML = "";
+      activityCard.innerHTML = `
+        <div style="padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; margin-top: 15px;">
+          <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚡ ${activeLesson.activity.title}</h3>
+          <p style="margin: 0 0 10px 0; line-height: 1.5;">${activeLesson.activity.task}</p>
+          ${activeLesson.activity.hint ? `<small style="opacity: 0.8; font-style: italic; display: block;"><strong>Hint:</strong> ${activeLesson.activity.hint}</small>` : ""}
+        </div>
+      `;
     }
+
+  } else {
+    activityCard.style.display = "none";
+    activityCard.innerHTML = "";
   }
+}
 
 /* ---------------- Profile & Badges View ---------------- */
 function renderProfileView() {
