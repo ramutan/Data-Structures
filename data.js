@@ -19,9 +19,10 @@ const MODULES = [
         kind: "reading", 
         body: "A data structure is a method of storing and organizing data. How we choose to arrange data depends on the type of information we have and what we plan to do with it.<br><br><b>A Real-World Analogy: The Family Tree</b><br>To understand this concept without computers, imagine organizing information about your relatives. You would use a family tree structure because it clearly maps out relationships, making it simple to trace family members back several generations. Without the connected links between parents and children, seeing these relationships would be far more difficult.<br><br><b>Why Data Structures Matter?</b><br>Data structures allow us to handle large volumes of information efficiently, powering major applications like massive databases and web search engines. They serve as foundational elements for building fast algorithms by keeping data organized, lowering system complexity, and boosting overall performance.<br><br><b>Two Main Types in Computer Science:</b><ul><li><b>Primitive Data Structures:</b> Built-in, basic types provided directly by programming languages to hold single values (such as integers, floats, characters, and booleans).</li><li><b>Abstract Data Structures:</b> Advanced structures constructed using primitive types to handle complex operations (such as arrays, linked lists, stacks, queues, trees, and graphs).</li></ul>"
       },
+
       { 
         id: "1.0.3", 
-        title: "1.0.3 Video — Why Structures Matter", 
+        title: "1.0.3 Video — Why Structures Matter?", 
         kind: "video", 
         body: "In this video walkthrough, we compare a naive O(n²) approach with a well-chosen structure that solves the same problem in O(n log n).",
         videoUrl: "",
@@ -424,7 +425,11 @@ function initAppEvents() {
   });
 
   // User Dropdown Options
+  
   document.getElementById("btn-view-profile").addEventListener("click", () => switchView("profile"));
+  document.getElementById("btn-course").addEventListener("click", () => switchView("course"));
+  document.getElementById("btn-about").addEventListener("click", () => switchView("about"));
+  document.getElementById("btn-contact").addEventListener("click", () => switchView("contact"));
   document.getElementById("btn-logout").addEventListener("click", () => {
     currentAccount = null;
     document.getElementById("app-shell").style.display = "none";
